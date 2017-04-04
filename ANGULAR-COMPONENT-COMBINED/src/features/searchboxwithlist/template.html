@@ -2,14 +2,13 @@
 
 <md-content class="menu">
     <div layout="column">
-      <label>Menutype is {{type}}</label>
+      <label> {{ctrl.type}}</label>
       <md-input-container flex>
-          <label>{{type}}</label>
+          <label>{{ctrl.type}}</label>
           <input type="text"/>
         </md-input-container>
-      <md-button flex class="md-raised">SEARCH</md-button>
-      <!--  <ul ng-repeat=('item in items')>-->
-      <ul>
+      <md-button flex ng-click="ctrl.getUser()" class="md-raised">SEARCH</md-button>
+      <ul ng-repeat='item in ctrl.listdata'>
         <li>{{item}}</li>
       </ul>
     </div>
