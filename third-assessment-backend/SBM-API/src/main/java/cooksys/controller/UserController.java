@@ -5,8 +5,11 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +23,8 @@ import cooksys.db.entity.embeddable.Credentials;
 import cooksys.db.entity.embeddable.Profile;
 import cooksys.dto.TweetDto;
 import cooksys.dto.UserDto;
+import cooksys.exception.ErrorResponse;
+import cooksys.exception.UserException;
 import cooksys.service.UserService;
 
 @RestController
@@ -42,12 +47,15 @@ public class UserController {
 	public UserDto post(@RequestBody RequestWrapper wrapper, HttpServletResponse httpResponse){
 		UserDto dto = userService.post(wrapper.getCredentials(), wrapper.getProfile());
 		httpResponse.setStatus(HttpServletResponse.SC_CREATED);
-		System.out.println(dto.getUname());
 		return dto;
 	}
 	
 	@GetMapping("@{username}")
-	public UserDto getUsername(@PathVariable String username){
+	public UserDto getUsername(@PathVariable String username) throws UserException{
+		UserDto user = userService.get(username);
+		if(user == null){
+			throw new UserException("User does not exist");
+		}
 		return userService.get(username);
 	}
 	//can't have multiple requestbody variables, fix this
@@ -94,6 +102,14 @@ public class UserController {
 	@GetMapping("@{username}/following")
 	public Set<UserDto> getFollowing(@PathVariable String username){
 		return userService.getFollowing(username);
+	}
+	
+	@ExceptionHandler(UserException.class)
+	public ResponseEntity<ErrorResponse> exceptionHandler(Exception ex) {
+		ErrorResponse error = new ErrorResponse();
+		error.setErrorCode(HttpStatus.NOT_FOUND.value());
+		error.setMessage(ex.getMessage());
+		return new ResponseEntity<ErrorResponse>(error, HttpStatus.OK);
 	}
 	
 	

@@ -4,7 +4,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +23,9 @@ import cooksys.dto.ReplyDto;
 import cooksys.dto.RepostDto;
 import cooksys.dto.TweetDto;
 import cooksys.dto.UserDto;
+import cooksys.exception.ErrorResponse;
+import cooksys.exception.TweetException;
+import cooksys.exception.UserException;
 import cooksys.service.TweetService;
 
 @RestController
@@ -45,7 +51,11 @@ public class TweetController {
 	}
 	
 	@GetMapping("{id}")
-	public TweetDto get(@PathVariable int id){
+	public TweetDto get(@PathVariable int id) throws TweetException{
+		TweetDto tweet = tweetService.get(id);
+		if(tweet == null){
+			throw new TweetException("Tweet does not exist");
+		}
 		return tweetService.get(id);
 	}
 	
@@ -101,6 +111,14 @@ public class TweetController {
 	@GetMapping("{id}/mentions")
 	public List<UserDto> getMentions(@PathVariable int id){
 		return tweetService.mentions(id);
+	}
+	
+	@ExceptionHandler(TweetException.class)
+	public ResponseEntity<ErrorResponse> exceptionHandler(Exception ex) {
+		ErrorResponse error = new ErrorResponse();
+		error.setErrorCode(HttpStatus.NOT_FOUND.value());
+		error.setMessage(ex.getMessage());
+		return new ResponseEntity<ErrorResponse>(error, HttpStatus.OK);
 	}
 	
 }
