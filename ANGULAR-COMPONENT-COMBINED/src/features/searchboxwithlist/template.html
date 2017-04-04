@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="src/features/searchboxwithlist/template.css">
+
+<md-content class="menu">
+    <div layout="column">
+      <label>Menutype is {{type}}</label>
+      <md-input-container flex>
+          <label>{{type}}</label>
+          <input type="text"/>
+        </md-input-container>
+      <md-button flex class="md-raised">SEARCH</md-button>
+      <!--  <ul ng-repeat=('item in items')>-->
+      <ul>
+        <li>{{item}}</li>
+      </ul>
+    </div>
+</md-content>

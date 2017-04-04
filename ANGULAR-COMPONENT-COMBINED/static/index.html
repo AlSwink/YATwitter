@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="twitter.app" ng-strict-di>
+  <head>
+    <meta charset="utf-8">
+    <title>YATwitter</title>
+    <base href="/">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="../src/main.css">
+  </head>
+  <body>
+
+    <statusbar username="LOGIN"></statusbar>
+
+    <topmenu></topmenu>
+
+    <md-content layout="row" layout-xs="column" class="container">
+      <div class="sidemenu" menuname="Hashtags">
+        <searchboxwithlist type="hashtags"></searchboxwithlist>
+      </div>
+      <div layout="column" class="mainview">
+        <div ng-view> FEED / PROFILE / ETC appears here, placed by route </div>
+      </div>
+      <div class="sidemenu" menuname="People">
+        <searchboxwithlist type="people"></searchboxwithlist>
+      </div>
+    </md-content>
+    <bottommenu></bottommenu>
+  </body>
+</html>

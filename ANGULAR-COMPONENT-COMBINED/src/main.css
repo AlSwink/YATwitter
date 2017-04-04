@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.sidemenu {
+  flex: 1;
+  min-height: 20px;
+  background-color: lightgreen;
+
+}
+
+.mainview {
+  flex: 2;
+  min-height: 20px;
+  min-width: 100px;
+  background-color: lightblue;
+
+}
+
+.container {
+  display: flex;
+
+}
+
+.header {
+  align-items: center;
+  align-content: center;
+}
