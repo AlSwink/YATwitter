@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,10 +40,12 @@ public class UserController {
 		this.userService = userService;
 	}
 	
+	@CrossOrigin
 	@GetMapping
 	public List<UserDto> index() {
 		return userService.index();
 	}
+	@CrossOrigin
 	@PostMapping
 	public UserDto post(@RequestBody RequestWrapper wrapper, HttpServletResponse httpResponse){
 		UserDto dto = userService.post(wrapper.getCredentials(), wrapper.getProfile());
@@ -50,55 +53,66 @@ public class UserController {
 		return dto;
 	}
 	
+	@CrossOrigin
 	@GetMapping("@{username}")
 	public UserDto getUsername(@PathVariable String username) throws UserException{
+		System.out.println(username);
 		UserDto user = userService.get(username);
 		if(user == null){
 			throw new UserException("User does not exist");
 		}
 		return userService.get(username);
 	}
-	//can't have multiple requestbody variables, fix this
+
+	@CrossOrigin
 	@PatchMapping("@{username}")
 	public UserDto patchUser(@PathVariable String username, @RequestBody RequestWrapper wrapper, HttpServletResponse httpResponse){
 		return userService.patch(username, wrapper.getCredentials(), wrapper.getProfile());
 	}
-	//can't have multiple requestbody variables, fix this
+
+	@CrossOrigin
 	@DeleteMapping("@{username}")
 	public UserDto deleteUser(@PathVariable String username, @RequestBody RequestWrapper wrapper, HttpServletResponse httpResponse){
 		return userService.delete(username, wrapper.getCredentials());
 	}
 	
+	@CrossOrigin
 	@PostMapping("@{username}/follow")
 	public void follow(@PathVariable String username, @RequestBody Credentials credentials, HttpServletResponse httpResponse){
 		userService.follow(username, credentials);
 	}
 	
+	@CrossOrigin
 	@PostMapping("@{username}/unfollow")
 	public void unfollow(@PathVariable String username, @RequestBody Credentials credentials, HttpServletResponse httpResponse){
 		userService.unfollow(username, credentials);
 	}
 	
+	@CrossOrigin
 	@GetMapping("@{username}/feed")
 	public List<TweetDto> getFeed(@PathVariable String username){
 		return userService.feed(username);
 	}
 	
+	@CrossOrigin
 	@GetMapping("@{username}/tweets")
 	public List<TweetDto> getTweets(@PathVariable String username){
 		return userService.tweets(username);
 	}
 	
+	@CrossOrigin
 	@GetMapping("@{username}/mentions")
 	public List<TweetDto> getMentions(@PathVariable String username){
 		return userService.mentions(username);
 	}
 	
+	@CrossOrigin
 	@GetMapping("@{username}/followers")
 	public Set<UserDto> getFollowers(@PathVariable String username){
 		return userService.getFollowers(username);
 	}
 	
+	@CrossOrigin
 	@GetMapping("@{username}/following")
 	public Set<UserDto> getFollowing(@PathVariable String username){
 		return userService.getFollowing(username);
