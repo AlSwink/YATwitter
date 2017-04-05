@@ -9,13 +9,6 @@ body {
   background-color: black;
 }
 
-.sidemenu {
-  flex: 1;
-  min-height: 20px;
-  background-color: lightgreen;
-
-
-}
 
 .mainview {
   flex: 4;
@@ -75,4 +68,52 @@ background-color: lightgray;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.fullscreen {
+  display: flex;
+  flex-direction: column;
+  background-color: #52958B;
+}
+
+.topmenu {
+  flex: 1;
+}
+
+.sidemenu {
+  flex: 1;
+  min-height: 20px;
+  background-color: lightgreen;
+
+}
+
+.mainview {
+  display: flex;
+  flex: 4;
+  min-height: 20px;
+  min-width: 100px;
+  background-color: lightblue;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
+.container {
+  display: flex;
+  flex: 6;
+
+}
+
+.header {
+  align-items: center;
+  align-content: center;
+}
+
+.profile,
+.credentials {
+  display: flex;
+  align-items: stretch;
+}
+
+.credentials {
+  flex: 1;
 }
