@@ -7,22 +7,20 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="../src/main.css">
   </head>
-  <body>
-
-    <statusbar username="LOGIN"></statusbar>
+  <body controller="maincontroller">
+    <topstatusbar flex username="LOGIN">{{username}}</topstatusbar>
 
     <topmenu></topmenu>
 
     <md-content layout="row" layout-xs="column" class="container">
-      <div class="sidemenu" menuname="Hashtags">
+      <div class="sidemenu" menuname="Hashtags" class="">
         <searchboxwithlist type="hashtags"></searchboxwithlist>
+        <searchboxwithlist type="people"></searchboxwithlist>
       </div>
       <div layout="column" class="mainview">
         <div ng-view> FEED / PROFILE / ETC appears here, placed by route </div>
       </div>
-      <div class="sidemenu" menuname="People">
-        <searchboxwithlist type="people"></searchboxwithlist>
-      </div>
+
     </md-content>
     <bottommenu></bottommenu>
   </body>
