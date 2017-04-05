@@ -1,7 +1,20 @@
-.menu2 {
-  background-color: #1995AD;
+.listitem {
+  display: flex;
+  list-style-type: none;
+  padding:0;
+  line-height: .5em;
+  margin:0;
+  height:0px;
+  font-size: 16px;
 }
 
-.button4 {
-  background-color: #A1D6E2;
+.vertical-container {
+  height: 100%;
+  display: flex;
+
+}
+
+.tighten-list
+{
+  line-height: 1em;
 }

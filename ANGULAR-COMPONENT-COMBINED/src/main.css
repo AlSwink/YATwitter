@@ -4,16 +4,9 @@
 
 body {
   margin: 0;
-}
-
-.fullscreen {
-  display: flex;
-  flex-direction: column;
-  background-color: #52958B;
-}
-
-.topmenu {
-  flex: 1;
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
 }
 
 .sidemenu {
@@ -21,21 +14,20 @@ body {
   min-height: 20px;
   background-color: lightgreen;
 
+
 }
 
 .mainview {
-  display: flex;
   flex: 4;
   min-height: 20px;
   min-width: 100px;
   background-color: lightblue;
-  justify-content: space-around;
-  align-items: stretch;
+
 }
 
 .container {
   display: flex;
-  flex: 6;
+  height:100%;
 
 }
 
@@ -44,12 +36,43 @@ body {
   align-content: center;
 }
 
-.profile,
-.credentials {
-  display: flex;
-  align-items: stretch;
+.menu {
+background-color: lightgray;
 }
 
-.credentials {
-  flex: 1;
+.listitem {
+  display: flex;
+  list-style-type: none;
+  padding:0;
+  line-height: .5em;
+  margin:0;
+  height:0px;
+  font-size: 16px;
+}
+
+.fullscreen
+{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.icon
+{
+  font-size: 30px;
+}
+
+.bigger-icon
+{
+  font-size: 36px;
+}
+
+[ng-click],
+[data-ng-click],
+[x-ng-click] {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
