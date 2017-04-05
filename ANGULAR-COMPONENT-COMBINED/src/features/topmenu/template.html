@@ -1,4 +1,7 @@
 <link rel="stylesheet" href="src/features/topmenu/template.css">
+<script src="lib/angular.js"></script>
+<script src="lib/angular-ui-router.js"></script>
+<script src="ui-router.js"></script>
 
 <md-content class="menu">
 
@@ -6,10 +9,12 @@
 
     <div layout="row" layout-xs="column">
 
-      <md-button flex ng-click="getUser()"class="md-raised">TWEET</md-button>
-      <md-button flex class="md-raised">FEED</md-button>
-      <md-button flex class="md-raised">FOLLOWING</md-button>
-      <md-button flex class="md-raised">FOLLOWERS</md-button>
-      <md-button flex class="md-raised">ACCOUNT</md-button>
+
+      <!--<md-button flex ng-click = "ctrl.getTest()" class="md-raised">TWEET</md-button> -->
+      <md-button flex class="md-raised" ui-sref="tweet">TWEET</md-button>
+      <md-button flex class="md-raised" ui-sref="feed">FEED</md-button>
+      <md-button flex class="md-raised" ui-sref="following">FOLLOWING</md-button>
+      <md-button flex class="md-raised" ui-sref="followers">FOLLOWERS</md-button>
+      <md-button flex class="md-raised" ui-sref="account">ACCOUNT</md-button>
     </div>
 </md-content>
