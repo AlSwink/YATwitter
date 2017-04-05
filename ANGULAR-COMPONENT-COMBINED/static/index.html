@@ -5,23 +5,22 @@
     <title>YATwitter</title>
     <base href="/">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../src/main.css">
   </head>
-  <body controller="maincontroller">
+  <body controller="maincontroller" class="fullscreen">
     <topstatusbar flex username="LOGIN">{{username}}</topstatusbar>
 
     <topmenu></topmenu>
 
-    <md-content layout="row" layout-xs="column" class="container">
-      <div class="sidemenu" menuname="Hashtags" class="">
-        <searchboxwithlist type="hashtags"></searchboxwithlist>
-        <searchboxwithlist type="people"></searchboxwithlist>
+    <div layout="row" layout-xs="column" class="container">
+      <div class='sidemenu'>
+        <searchboxwithlist></searchboxwithlist>
       </div>
-      <div layout="column" class="mainview">
+      <div class="mainview">
         <div ng-view> FEED / PROFILE / ETC appears here, placed by route </div>
       </div>
-
-    </md-content>
+    </div>
     <bottommenu></bottommenu>
   </body>
 </html>
