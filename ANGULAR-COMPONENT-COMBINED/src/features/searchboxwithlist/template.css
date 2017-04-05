@@ -1,4 +1,20 @@
-.topmenubackground {
-  background-color: blue;
+.listitem {
+  display: flex;
+  list-style-type: none;
+  padding:0;
+  line-height: .5em;
+  margin:0;
+  height:0px;
+  font-size: 16px;
+}
 
+.vertical-container {
+  height: 100%;
+  display: flex;
+
+}
+
+.tighten-list
+{
+  line-height: 1em;
 }
