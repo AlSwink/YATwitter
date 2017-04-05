@@ -1,4 +1,11 @@
-.topmenubackground {
-  background-color: blue;
+.header {
+  text-align: center;
+}
 
+.menu1 {
+  background-color: #1995AD;
+}
+
+.button3 {
+  background-color: #A1D6E2;
 }
