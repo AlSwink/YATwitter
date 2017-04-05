@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,11 +28,13 @@ public class TagController {
 		this.tagService = tagService;
 	}
 	
+	@CrossOrigin
 	@GetMapping
 	public List<HashtagDto> get(){
 		return tagService.index();
 	}
 	
+	@CrossOrigin
 	@GetMapping("{label}")
 	public List<TweetDto> getTag(@PathVariable String label){
 		return tagService.taggedTweets(label);

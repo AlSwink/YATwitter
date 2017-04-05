@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,6 @@ import cooksys.dto.TweetDto;
 import cooksys.dto.UserDto;
 import cooksys.exception.ErrorResponse;
 import cooksys.exception.TweetException;
-import cooksys.exception.UserException;
 import cooksys.service.TweetService;
 
 @RestController
@@ -39,10 +39,13 @@ public class TweetController {
 		this.tweetService = tweetService;
 	}
 	
+	@CrossOrigin
 	@GetMapping
 	public List<TweetDto> index(){
 		return tweetService.index();
 	}
+	
+	@CrossOrigin
 	@PostMapping
 	public TweetDto post(@RequestBody RequestWrapper wrapper, HttpServletResponse httpResponse){
 		TweetDto dto = tweetService.post(wrapper.getCredentials().getUsername(), wrapper.getContent());
@@ -50,6 +53,7 @@ public class TweetController {
 		return dto;
 	}
 	
+	@CrossOrigin
 	@GetMapping("{id}")
 	public TweetDto get(@PathVariable int id) throws TweetException{
 		TweetDto tweet = tweetService.get(id);
@@ -59,16 +63,19 @@ public class TweetController {
 		return tweetService.get(id);
 	}
 	
+	@CrossOrigin
 	@DeleteMapping("{id}")
 	public TweetDto delete(@PathVariable int id, @RequestBody Credentials credentials){
 		return tweetService.delete(id, credentials);
 	}
 	
+	@CrossOrigin
 	@PostMapping("{id}/like")
 	public void like(@PathVariable int id, @RequestBody Credentials credentials){
 		tweetService.like(id, credentials);
 	}
 	
+	@CrossOrigin
 	@PostMapping("{id}/reply")
 	public ReplyDto reply(@PathVariable int id, @RequestBody RequestWrapper wrapper, HttpServletResponse httpResponse){
 		ReplyDto dto = tweetService.reply(id, wrapper.getCredentials(), wrapper.getContent());
@@ -76,6 +83,7 @@ public class TweetController {
 		return dto;
 	}
 	
+	@CrossOrigin
 	@PostMapping("{id}/repost")
 	public RepostDto repost(@PathVariable int id, @RequestBody Credentials credentials, HttpServletResponse httpResponse){
 		RepostDto dto = tweetService.repost(id, credentials);
@@ -83,35 +91,43 @@ public class TweetController {
 		return dto;
 	}
 	
+	@CrossOrigin
 	@GetMapping("{id}/tags")
 	public List<HashtagDto> tags(@PathVariable int id){
 		return tweetService.getTags(id);
 	}
 	
+	@CrossOrigin
 	@GetMapping("{id}/likes")
 	public List<UserDto> getLikes(@PathVariable int id){
 		return tweetService.getLikes(id);
 	}
 	
+	@CrossOrigin
 	@GetMapping("{id}/context")
 	public Context getContext(@PathVariable int id){
 		return tweetService.context(id);
 	}
 	
+	@CrossOrigin
 	@GetMapping("{id}/replies")
 	public List<ReplyDto> getReplies(@PathVariable int id){
 		return tweetService.getReplies(id);
 	}
 	
+	@CrossOrigin
 	@GetMapping("{id}/reposts")
 	public List<RepostDto> getReposts(@PathVariable int id){
 		return tweetService.getReposts(id);
 	}
 	
+	@CrossOrigin
 	@GetMapping("{id}/mentions")
 	public List<UserDto> getMentions(@PathVariable int id){
 		return tweetService.mentions(id);
 	}
+	
+	//maybe add trending functionality
 	
 	@ExceptionHandler(TweetException.class)
 	public ResponseEntity<ErrorResponse> exceptionHandler(Exception ex) {

@@ -4,33 +4,18 @@ angular.module('twitter.app')
 
   console.log('Database service created')
   console.log(this)
-  const testUser = {
-    "content": "string",
-    "credentials": {
-      "password": "string",
-      "username": "testing"
-    },
-    "profile": {
-      "email": "string",
-      "firstName": "string",
-      "lastName": "string",
-      "phone": "string"
-    }
-  }
-
-  $http.post('http://localhost:8080/api/users/', JSON.stringify(testUser))
-    .then(function success (response) {
-      console.log(response.data)
-    })
 
   $http({
     method: 'GET',
-    url: 'http://localhost:8080/api/users/@bill'
+    url: 'http://localhost:8080/api/users'
   }).then(function successCallback (response) {
     console.log('was able to access index.html')
     console.log('SUCCESSFULLY CALLED METHOD')
     const data = response.data
-    console.log(data)
+    data.forEach(function(element){
+      console.log(element)
+    })
+
   }, function errorCallback (response) {
     console.log('http test failed, could not access index.html')
   })
@@ -40,7 +25,8 @@ angular.module('twitter.app')
       method: 'GET',
       url: `http://localhost:8080/api/users/@${username}`
     }).then(function successCallback (response) {
-      return response.data
+      const data = response.data[0]
+      console.log(data.uname)
     }, function errorCallback (response) {
       console.log('FAILED TO GET RETURN FROM METHOD')
     })
@@ -64,10 +50,11 @@ angular.module('twitter.app')
       })
   }
 
-  this.deleteUser = function (deletedUser) {
+  this.deleteUser = function (deletedUser, credentials) {
     $http({
       method: 'DELETE',
-      url: `http://localhost:8080/api/users/@${deletedUser}`
+      url: `http://localhost:8080/api/users/@${deletedUser}`,
+      data: JSON.stringify(credentials)
     }).then(function success (response) {
       return response.data
     }, function error (response) {
@@ -152,4 +139,25 @@ angular.module('twitter.app')
     })
   }
 
+  this.getAllTags = function () {
+    $http({
+      method: 'GET',
+      url: 'http://localhost:8080/api/tags'
+    }).then(function success (response) {
+      return response.data
+    }, function error (response) {
+      console.log('FAILED TO GET RETURN FROM METHOD')
+    })
+  }
+
+  this.getTag = function (label) {
+    $http({
+      method: 'GET',
+      url: `http://localhost:8080/api/users/${label}`
+    }).then(function success (response) {
+      return response.data
+    }, function error (response) {
+      console.log('FAILED TO GET RETURN FROM METHOD')
+    })
+  }
 })
