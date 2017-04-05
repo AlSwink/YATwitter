@@ -1,15 +1,18 @@
 <link rel="stylesheet" href="src/features/topmenu/template.css">
+<script src="lib/angular.js"></script>
+<script src="lib/angular-ui-router.js"></script>
+<script src="ui-router.js"></script>
 
 <md-content class="menu1">
 
   <h2 class="header">Welcome to Yet Another Twitter!</h2>
 
     <div layout="row" layout-xs="column">
-
-      <md-button flex class="button3">TWEET</md-button>
-      <md-button flex class="button3">FEED</md-button>
-      <md-button flex class="button3">FOLLOWING</md-button>
-      <md-button flex class="button3">FOLLOWERS</md-button>
-      <md-button flex class="button3">ACCOUNT</md-button>
+      <!--<md-button flex ng-click = "ctrl.getTest()" class="md-raised">TWEET</md-button> -->
+      <md-button flex class="button3" ui-sref="tweet">TWEET</md-button>
+      <md-button flex class="button3" ui-sref="feed">FEED</md-button>
+      <md-button flex class="button3" ui-sref="following">FOLLOWING</md-button>
+      <md-button flex class="button3" ui-sref="followers">FOLLOWERS</md-button>
+      <md-button flex class="button3" ui-sref="account">ACCOUNT</md-button>
     </div>
 </md-content>
