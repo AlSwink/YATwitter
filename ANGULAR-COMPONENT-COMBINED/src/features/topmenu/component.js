@@ -9,9 +9,6 @@ export default angular.module('twitter.app')
   controller: function(Database /*services controller needs access to*/){
     console.log(this)
     //this.somefunction = function(){}
-    this.getUser = function(){
-      Database.getUser('doug')
-    }
     //goes here. functions that will be called by html through the bindings.
   },
   controllerAs: 'ctrl',

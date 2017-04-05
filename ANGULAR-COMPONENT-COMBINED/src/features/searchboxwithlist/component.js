@@ -2,17 +2,15 @@ import templateUrl from './template.html'
 
 console.log("loaded searchboxwithlist")
 
-let self001
 export default angular.module('twitter.app')
 .component('searchboxwithlist', {
   templateUrl, //comes from the import, installs into the templateUrl slot as if templateUrl: templateUrl
 
-  controller: function(Database, $timeout, $q, $log) {
-    self001 = this
+  controller: function(Database /*services controller needs access to*/){
 
-    this.get = (type) => {
-      console.log("trying to GET with type " + type)
-      //Database.get(type);
+    this.getUser = () => {
+      console.log("executing GET")
+      Database.getUser();
     }
 
     this.setType = (type) => {
@@ -20,8 +18,7 @@ export default angular.module('twitter.app')
     }
 
     this.refresh = () => {
-      this.listdata = ['dummy1', 'dummy2', 'dummy3', 'whatever', 'Alpha', 'Bravo', 'Delta', 'Echo', 'Foxtrot', '1', 'a', 'b']
-       //Database.getAll(this.type)
+      this.listdata = Database.getAll(this.type)
     }
 
     //this.type = ''  this must be commented out b/c type arrives via the bindings
@@ -31,20 +28,6 @@ export default angular.module('twitter.app')
 
     this.listdata = []
 
-
-    this.new = function(item){
-      if (type === 'hashtags')
-      {
-        console.log('IMPLEMENT CREATE NEW HASHTAG FROM SEARCH BAR')
-      }
-      else if (type === 'people')
-      {
-        console.log('IMPLEMENT CREATE NEW HASHTAG FROM SEARCH BAR')
-      }
-      else {
-        console.log('searchbox type error! Received: ' + type)
-      }
-    }
     this.refresh()
     //this.$onChanges = this.refresh()
     //this.somefunction = function(){}
