@@ -1,18 +1,32 @@
 <link rel="stylesheet" href="src/features/view/profile/template.css">
 
-<md-content class="profile view">
-  <md-card class="card">
-    <!-- <img src="twitter_bird_logo.png" class="md-card-image" alt="image caption"> -->
-    <md-card-content>
-      <h2>Jonathan Greer</h2>
-      <p>username: jon44</p>
-      <p>e-mail: jonathangreer80@outlook.com</p>
-      <p>phone: (134) 492-4958</p>
-      <p>joined: May 21, 2015</p>
-    </md-card-content>
-    <md-card-actions layout="row" layout-align="end center">
-     <md-button class="button1">Update</md-button>
-     <md-button class="button1">Delete</md-button>
-    </md-card-actions>
-  </md-card>
-</md-content>
+<div class="profile view">
+  <div class="information column">
+    <h2>John Smith</h2>
+    user: <p>{{ctrl.user.uname}}</p>
+    email: <p>{{ctrl.user.profile.email}}</p>
+    joined: <p>{{ctrl.user.joined}}</p>
+  </div>
+  <form name="information" class="update column">
+    <md-input-container>
+      First<label>{{ctrl.user.profile.firstName}}</label>
+      <input type="text" ng-model="first">
+    </md-input-container>
+    <md-input-container>
+      Last<label>{{ctrl.user.profile.lastName}}</label>
+      <input type="text" ng-modle="last">
+    </md-input-container>
+    <md-input-container>
+      Email<label>{{ctrl.user.profile.email}}</label>
+      <input type="text" ng-model="email">
+    </md-input-container>
+    <md-input-container>
+      Phone<label>{{ctrl.user.profile.phone}}</label>
+      <input type="text" ng-model="phone">
+    </md-input-container>
+    <div class="select row">
+      <md-button class="button5">Update</md-button>
+      <md-button class="button5">Delete</md-button>
+    </div>
+  </form>
+</div>
