@@ -6,7 +6,7 @@ export default angular.module('twitter.app')
 .component('feed', {
   templateUrl, //comes from the import, installs into the templateUrl slot as if templateUrl: templateUrl
 
-  controller: function(Database /*services controller needs access to*/){
+  controller: function(Database,$scope,$stateParams /*services controller needs access to*/){
     console.log(this)
     //this.somefunction = function(){}
     //goes here. functions that will be called by html through the bindings.

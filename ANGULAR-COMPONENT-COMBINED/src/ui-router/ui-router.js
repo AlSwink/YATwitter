@@ -4,33 +4,36 @@ console.log('++++++++++++++ui-router loaded')
 
 app.config(['$stateProvider', function($stateProvider) {
   $stateProvider.state('tweet', {
-    url: '/tweet',
-  //  component: 'tweetComponent',
-    template: '<h3>TWEET</h3>'
+    url: '/tweet/:tweetId/:function',
+    params: { tweetId: null ,function:null },
+    //component: 'tweet',  //
+    template: '<h3>Regular Tweet </h3>'
+  })
+
+  $stateProvider.state('tweets', {
+    url: '/tweets',         // Gets all the tweets and then displays them.
+  //  component: 'tweet', // Goes to the tweet component or passes the new parameter
+    template: '<h3>Get All Tweets</h3>'
   })
 
   $stateProvider.state('feed', {
     url: '/feed',
-    //component: 'feedComponent',
-    template: '<h3>FEED</h3>'
+    component: 'feed'
   })
 
   $stateProvider.state('following', {
     url: '/following',
-    //component: 'feedComponent',
-    template: '<h3>FOLLOWING</h3>'
+    component: 'following'
   })
 
   $stateProvider.state('followers', {
     url: '/followers',
-    //component: 'feedComponent',
-    template: '<h3>FOLLOWERS</h3>'
+    component: 'followers'
   })
 
   $stateProvider.state('account', {
     url: '/account',
-    //component: 'feedComponent',
-    template: '<h3>ACCOUNT</h3>'
+    component: 'profile',
   })
 
 }])

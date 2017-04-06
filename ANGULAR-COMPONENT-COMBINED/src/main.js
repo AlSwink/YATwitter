@@ -21,3 +21,5 @@ import './features/view/feed/component'
 import './features/view/followers/component'
 import './features/view/following/component'
 import './features/view/profile/component'
+
+import './ui-router/ui-router'

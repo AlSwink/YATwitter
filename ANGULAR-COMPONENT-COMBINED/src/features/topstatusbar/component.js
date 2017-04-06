@@ -6,10 +6,23 @@ export default angular.module('twitter.app')
 .component('topstatusbar', {
   templateUrl, //comes from the import, installs into the templateUrl slot as if templateUrl: templateUrl
 
-  controller: function(Database /*services controller needs access to*/){
+  //controller: function(Database /*services controller needs access to*/){
+  controller: function($scope,$stateParams){
     console.log(this)
+
     //this.somefunction = function(){}
     //goes here. functions that will be called by html through the bindings.
+    let test;
+    $scope.id = $stateParams.tweetId
+
+    if($scope.id != null){
+        test = $scope.id
+      }
+        else {
+          test = "null"
+        }
+
+    console.log(test)
   },
   controllerAs: 'ctrl',
   bindings: {}
