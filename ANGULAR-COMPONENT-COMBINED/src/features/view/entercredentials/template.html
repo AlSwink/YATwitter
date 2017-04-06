@@ -1,18 +1,18 @@
 <link rel="stylesheet" href="src/features/view/entercredentials/template.css">
 
-<md-content class="credentials view">
+<md-content name="Credentials" class="credentials view">
   <div class="input row">
     <md-input-container class="username">
       <label>username</label>
-      <input type="text" ng-model="username">
+      <input required md-no-asterisk type="text" ng-model="username">
     </md-input-container>
     <md-input-container class="password">
       <label>password</label>
-      <input type="text" ng-model="password">
+      <input required md-no-asterisk type="text" ng-model="password">
     </md-input-container>
   </div>
   <div class="select row">
-    <md-button class="button2">Login</md-button>
-    <md-button class="button2">Register</md-button>
+    <md-button class="button2" ng-click="ctrl.loginClick(username, password)">Login</md-button>
+    <md-button class="button2" ng-click="ctrl.registerClick()">Register</md-button>
   </div>
 </md-content>
