@@ -4,6 +4,7 @@ import './main.css'
 import './app/app.module'
 
 import './database/Database'
+import './database/tweetService'
 
 // import './features/topmenu/component'
 

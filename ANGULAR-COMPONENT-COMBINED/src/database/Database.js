@@ -2,6 +2,24 @@ angular.module('twitter.app')
 
 .service('Database', function ($http) { //Database has access to http builtin service
 
+  const db = this
+  this.loggedIn = {
+    username: "",
+    password: ""
+  }
+
+  this.getCredentials = () => { return this.loggedIn }
+
+  this.setCredentials = (cred) => { this.loggedIn = cred }
+
+  this.validateUser = (cred) => {
+    console.log(cred.username)
+    return $http.post(`http://localhost:8080/api/validate/username/credentials/@${cred.username}`, JSON.stringify(cred))
+      .then(function success(response) {
+        console.log(response.data)
+      })
+  }
+
   this.getUser = function (username) {
     return $http({
       method: 'GET',
@@ -26,7 +44,8 @@ angular.module('twitter.app')
   this.postUser = function (postedUser) {
     return $http.post('http://localhost:8080/api/users/', JSON.stringify(postedUser))
       .then(function success (response) {
-        console.log(response.data)
+        db.loggedIn = postedUser['credentials']
+        return response.data
       })
   }
 
