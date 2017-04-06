@@ -15,7 +15,14 @@ export default angular.module('twitter.app')
         this.credentials.username = username
         this.credentials.password = password
         console.log(this.credentials.username)
-        Database.validate(this.credentials)
+        Database.validateUser(this.credentials)
+          .then(function (data) {
+            if (data === true) {
+              Database.loggedIn = this.credentials
+            } else {
+              console.log("Incorrect credentials")
+            }
+          })
       }
     }
 

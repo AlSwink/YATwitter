@@ -16,7 +16,7 @@ angular.module('twitter.app')
     console.log(cred.username)
     return $http.post(`http://localhost:8080/api/validate/username/credentials/@${cred.username}`, JSON.stringify(cred))
       .then(function success(response) {
-        console.log(response.data)
+        return response.data
       })
   }
 
