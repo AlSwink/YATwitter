@@ -4,6 +4,70 @@
 
 body {
   margin: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+}
+
+
+.mainview {
+  flex: 4;
+  min-height: 20px;
+  min-width: 100px;
+  background-color: lightblue;
+
+}
+
+.container {
+  display: flex;
+  height:100%;
+
+}
+
+.header {
+  align-items: center;
+  align-content: center;
+}
+
+.menu {
+background-color: lightgray;
+}
+
+.listitem {
+  display: flex;
+  list-style-type: none;
+  padding:0;
+  line-height: .5em;
+  margin:0;
+  height:0px;
+  font-size: 16px;
+}
+
+.fullscreen
+{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.icon
+{
+  font-size: 30px;
+}
+
+.bigger-icon
+{
+  font-size: 36px;
+}
+
+[ng-click],
+[data-ng-click],
+[x-ng-click] {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .fullscreen {
