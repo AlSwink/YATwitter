@@ -1,13 +1,50 @@
 <link rel="stylesheet" href="src/features/view/profile/template.css">
 
 <div class="profile view">
-  <div class="information column">
+  <div class="information column" ng-show="ctrl.isState('profile')">
     <h2>John Smith</h2>
     user: <p>{{ctrl.user.uname}}</p>
     email: <p>{{ctrl.user.profile.email}}</p>
     joined: <p>{{ctrl.user.joined}}</p>
   </div>
-  <form name="information" class="update column">
+
+  <md-content class="update view" ng-show="ctrl.isState('register')">
+    <form class="information column">
+      <md-input-container>
+        <label>{{greatbigphony}}</label>
+        <input type="text" ng-model="username">
+      </md-input-container>
+      <md-input-container>
+        Username<label>{{ctrl.user.credentials.uname}}</label>
+        <input type="text" ng-model="username">
+      </md-input-container>
+      <md-input-container>
+        Password<label>{{ctrl.user.credentials.password}}</label>
+        <input type="text" ng-model="password">
+      </md-input-container>
+      <md-input-container>
+        First<label>{{ctrl.user.profile.firstName}}</label>
+        <input type="text" ng-model="first">
+      </md-input-container>
+      <md-input-container>
+        Last<label>{{ctrl.user.profile.lastName}}</label>
+        <input type="text" ng-modle="last">
+      </md-input-container>
+      <md-input-container>
+        Email<label>{{ctrl.user.profile.email}}</label>
+        <input type="text" ng-model="email">
+      </md-input-container>
+      <md-input-container>
+        Phone<label>{{ctrl.user.profile.phone}}</label>
+        <input type="text" ng-model="phone">
+      </md-input-container>
+      <div class="select row">
+        <md-button class="button5">Register</md-button>
+      </div>
+    </form>
+  </md-content>
+
+  <form name="information" class="information column" ng-show="ctrl.isState('profile')">
     <md-input-container>
       First<label>{{ctrl.user.profile.firstName}}</label>
       <input type="text" ng-model="first">
@@ -29,4 +66,5 @@
       <md-button class="button5">Delete</md-button>
     </div>
   </form>
+
 </div>

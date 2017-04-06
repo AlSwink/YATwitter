@@ -7,9 +7,15 @@ export default angular.module('twitter.app')
   templateUrl, //comes from the import, installs into the templateUrl slot as if templateUrl: templateUrl
 
   controller: function(Database /*services controller needs access to*/){
-    console.log(this)
-    //this.somefunction = function(){}
-    //goes here. functions that will be called by html through the bindings.
+    this.state = 'register'
+
+    this.isState = (state) => {
+      if (this.state === state) {
+        return true
+      } else {
+        return false
+      }
+    }
   },
   controllerAs: 'ctrl',
   bindings: {}
