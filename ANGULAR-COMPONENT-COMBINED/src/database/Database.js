@@ -2,24 +2,6 @@ angular.module('twitter.app')
 
 .service('Database', function ($http) { //Database has access to http builtin service
 
-  console.log('Database service created')
-  console.log(this)
-
-  $http({
-    method: 'GET',
-    url: 'http://localhost:8080/api/users'
-  }).then(function successCallback (response) {
-    console.log('was able to access index.html')
-    console.log('SUCCESSFULLY CALLED METHOD')
-    const data = response.data
-    data.forEach(function(element){
-      console.log(element)
-    })
-
-  }, function errorCallback (response) {
-    console.log('http test failed, could not access index.html')
-  })
-
   this.getUser = function (username) {
     $http({
       method: 'GET',
@@ -33,14 +15,12 @@ angular.module('twitter.app')
   }
 
   this.getAllUsers = function () {
-    $http({
-      method: 'GET',
-      url: 'http://localhost:8080/api/users'
-    }).then(function success (response) {
-      return response.data
-    }, function error (response) {
-      console.log('FAILED TO GET RETURN FROM METHOD')
-    })
+    return $http.get('http://localhost:8080/api/users')
+     .then(function success (response) {
+       return response.data
+     }, function error (response) {
+       console.log('FAILED TO GET RETURN FROM METHOD')
+     })
   }
 
   this.postUser = function (postedUser) {

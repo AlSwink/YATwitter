@@ -1,12 +1,14 @@
 import templateUrl from './template.html'
 
 console.log("loaded searchboxwithlist")
-
+let self001
 export default angular.module('twitter.app')
 .component('searchboxwithlist', {
   templateUrl, //comes from the import, installs into the templateUrl slot as if templateUrl: templateUrl
 
   controller: function(Database /*services controller needs access to*/){
+
+    self001 = this
 
     this.getUser = () => {
       console.log("executing GET")
@@ -18,7 +20,15 @@ export default angular.module('twitter.app')
     }
 
     this.refresh = () => {
-      this.listdata = Database.getAll(this.type)
+      // Database.getAllUsers()
+      //   .then(function(data){
+      //     const unameList = []
+      //     data.forEach(function(element){
+      //       unameList.push(element.uname)
+      //     })
+      //     self001.listdata = unameList
+      //   })
+      this.listdata = ['dummy1', 'dummy2', 'dummy3']
     }
 
     //this.type = ''  this must be commented out b/c type arrives via the bindings
