@@ -1,16 +1,18 @@
 import templateUrl from './template.html'
 
 console.log("loaded searchboxwithlist")
+
 let self001
+
 export default angular.module('twitter.app')
 .component('searchboxwithlist', {
   templateUrl, //comes from the import, installs into the templateUrl slot as if templateUrl: templateUrl
 
   controller: function(Database, $scope) {
     self001 = this
+    console.log('WTF!!!!')
 
-
-    const fakedata = false
+    const fakedata = true
 
     this.refresh = () => {
       if (fakedata) {
@@ -32,7 +34,6 @@ export default angular.module('twitter.app')
               uname: 'DudeUser',
               profile: {email: 'a@b.com', firstName: 'Erv', lastName: 'R', phone: '111-111-1111'},
               joined: 22222222444
-
 
             },
             {
@@ -75,34 +76,19 @@ export default angular.module('twitter.app')
       {
 
         if (this.menuState === 'people') {
-          Database.getAllUsers()
-            .then(function (data) {
-              const unameList = []
-              data.forEach(function (element) {
-                element.tilecolor = getRandomColor()
-                unameList.push(element)
-              })
-              self001.listdata = unameList
-
-            })
+          this.listdata = Database.getAllUsers()
         }
         else if (this.menuState === 'tags') {
-          Database.getAllTags()
-            .then(function (data) {
-              const tagList = []
-              data.forEach(function (element) {
-                element.tilecolor = getRandomColor()
-                tagList.push(element)
-              })
-              self001.listdata = tagList
-            })
+          this.listdata = Database.getAllTags()
         }
 
       }
 
       this.listdata.forEach((item) => {
+
         if (item.tilecolor === undefined)
         {
+
           item.tilecolor = getRandomColor()
         }
       })
@@ -120,13 +106,13 @@ export default angular.module('twitter.app')
 
     this.peopleSearchVisible = true
 
-this.tagSearchVisible = false
+    this.tagSearchVisible = false
 
-this.menuState = 'people'
+    this.menuState = 'people'
 
-this.isMenuState = (m) => m === this.menuState
+    this.isMenuState = (m) => m === this.menuState
 
-this.getMenuState = () => this.menuState
+    this.getMenuState = () => this.menuState
 
     this.getSearchEnabled = () => this.searchEnabled
 
@@ -167,7 +153,7 @@ this.getMenuState = () => this.menuState
 
     this.toggleByTrending = () => this.sortByTrending = !this.sortByTrending
 
-this.toggleVisible = () => this.toggleVisible = !this.toggleVisible
+    this.toggleVisible = () => this.toggleVisible = !this.toggleVisible
 
 
     /*

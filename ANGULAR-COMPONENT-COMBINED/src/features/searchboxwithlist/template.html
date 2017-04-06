@@ -26,15 +26,18 @@
           md-cols-gt-md="1" md-cols="1" md-cols-md="1"
           md-row-height-gt-md="4:1" md-row-height="4:1"
           md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
-          <md-grid-tile
-              ng-repeat="item in ctrl.listdata"
-              ng-style="{
-                'background': item.tilecolor
-              }"
-              md-colspan='1'
+          <a ui-ref='tweet'>
+            <md-grid-tile
+                ng-repeat="item in ctrl.listdata"
+                ng-style="{
+                  'background': item.tilecolor
 
-              <p>{{item.uname}}</p>
-          </md-grid-tile>
+                }"
+                md-colspan='1'
+
+                <p>{{item.uname}}</p>
+            </md-grid-tile>
+          </a>
         </md-grid-list>
       </md-content>
 
@@ -49,8 +52,6 @@
                 'background': item.tilecolor
               }"
               md-colspan='1'
-
-
 
 
               <p>{{item.label}}</p>
