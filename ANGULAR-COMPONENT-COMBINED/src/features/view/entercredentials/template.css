@@ -1,7 +1,7 @@
 .credentials {
   width: 100%;
   height: 100%;
-  background-color: #F1F1F2;
+  background-color: #E2E8E4;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -18,5 +18,5 @@
 }
 
 .button2 {
-  background-color: #BCBABE;
+  background-color: #006C84;
 }

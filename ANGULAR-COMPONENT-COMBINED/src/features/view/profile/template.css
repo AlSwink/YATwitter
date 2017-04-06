@@ -1,19 +1,20 @@
 .profile {
   width: 100%;
   height: 100%;
-  background-color: #BCBABE;
+  background-color: #E2E8E4;
+  display: flex;
 }
 
-.card {
-  width: 100%;
-  height: 100%;
-  background-color: #F1F1F2;
-}
-
-.button1 {
-  background-color: #BCBABE;
-}
-
-.test {
+.update,
+.information {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: strecth;
+  align-items: center;
+}
+
+.button5 {
+  background-color: #006C84;
 }

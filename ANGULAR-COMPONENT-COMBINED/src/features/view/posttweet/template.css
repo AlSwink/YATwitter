@@ -1,0 +1,23 @@
+.view {
+  width: 100%;
+  height: 100%;
+  background-color: #E2E8E4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.header {
+  text-align: center;
+}
+
+.content {
+  padding-left: 25%;
+  padding-right: 25%;
+}
+
+.button6 {
+  background: #006C84;
+  margin-left: 45%;
+  margin-right: 45%;
+}
