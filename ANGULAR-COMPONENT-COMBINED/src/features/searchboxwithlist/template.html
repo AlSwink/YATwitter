@@ -1,11 +1,11 @@
 <link rel="stylesheet" href="src/features/searchboxwithlist/template.css">
 
-<div class="menu sidemenu">
-    <div layout="column" class="">
-      <md-toolbar>
+<md-content class="menu sidemenu">
+    <div layout="column" class="searchbox-list">
+      <md-toolbar class='md-primary' layout='column' layout-align='center center'>
         <div class='md-toolbar-tools' layout='row' layout-align='center bottom'>
-          <i class="material-icons bigger-icon" ng-click="ctrl.setMenuState('people')">face</i>
-          <i class="material-icons bigger-icon" ng-click="ctrl.setMenuState('tags')">label</i>
+          <i class="material-icons searchbox-bigbutton" ng-click="ctrl.setMenuState('people')">face</i>
+          <i class="material-icons searchbox-bigbutton" ng-click="ctrl.setMenuState('tags')">label</i>
           <!--<i class="material-icons bigger-icon" ng-click="ctrl.setMenuState('settings')">application_settings</i>-->
         </div>
         <div class='md-toolbar-tools' layout='row' layout-align='center center'>
@@ -13,29 +13,73 @@
           <!--<i class="material-icons icon" ng-click="ctrl.toggleSortByPeople()">face</i>-->
           <i class="material-icons icon">trending_up</i>
           <i class="material-icons icon">favorite</i>
-          <i class="material-icons icon">visibility</i>
         </div>
-        <md-input-container ng-show={{ctrl.searchEnabled}}>
-          <label>Search {{ctrl.type}}</label>
-          <input ng-model="listfilter" type="text"/>
+        <md-input-container class="searchbox-search md-primary" ng-show='ctrl.searchEnabled'>
+          <label class='searchbox-label'>Search {{ctrl.menuState}}</label>
+          <input class='searchbox-searchfield' ng-model="listfilter" type="text"/>
         </md-input-container>
       </md-toolbar>
       <p>{{ctrl.getMenuState()}}</p>
-      <div ng-show={{ctrl.isMenuState("people")}} class='tighten-list'>
-        <ul class="tighten-list" ng-repeat='item in ctrl.listdata | filter:listfilter | orderBy: "item" | limitTo:8'>
-          <li class="listitem"><md-button class="listitem"><label class="listitem">{{item}}</label></md-button></li>
+
+      <md-content layout-padding ng-show='ctrl.isMenuState("people")'>
+        <md-grid-list
+          md-cols-gt-md="12" md-cols="1" md-cols-md="8"
+          md-row-height-gt-md="4:1" md-row-height="4:1"
+          md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
+          <md-grid-tile
+              ng-repeat="item in ctrl.listdata"
+              ng-style="{
+                'background': item.tilecolor
+              }"
+              md-colspan-gt-sm="50"
+              md-rowspan-gt-sm="100">
+
+              <p>{{item.uname}}</p>
+          </md-grid-tile>
+        </md-grid-list>
+      </md-content>
+
+      <md-content layout-padding ng-show='ctrl.isMenuState("tags")'>
+        <md-grid-list
+          md-cols-gt-md="12" md-cols="1" md-cols-md="8"
+          md-row-height-gt-md="4:1" md-row-height="4:1"
+          md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
+          <md-grid-tile
+              ng-repeat="item in ctrl.listdata"
+              ng-style="{
+                'background': item.tilecolor
+              }"
+              md-colspan-gt-sm="50"
+              md-rowspan-gt-sm="100">
+
+<tweet id='{{idnum}}'></tweet>
+
+<button type="button" name="button"></button>
+<button type="button" name="button"></button>
+
+
+
+              <p>{{item.label}}</p>
+          </md-grid-tile>
+        </md-grid-list>
+      </md-content>
+<!--
+      <div ng-show='ctrl.isMenuState("people")' class='tighten-list'>
+        <ul class="tighten-list" ng-repeat='item in ctrl.listdata | filter:listfilter | orderBy: ctrl.sortType | limitTo:12'>
+          <li class="listitem searchbox-listitem">{{item.uname}}</li>
         </ul>
       </div>
-      <div ng-show={{ctrl.isMenuState("tags")}} class='tighten-list'>
-        <ul class="tighten-list" ng-repeat='item in ctrl.listdata | filter:listfilter | orderBy: "item" | limitTo:8'>
-          <li class="listitem"><md-button class="listitem"><label class="listitem">{{item}}</label></md-button></li>
+      <div ng-show='ctrl.isMenuState("tags")' class='tighten-list'>
+        <ul class="tighten-list" ng-repeat='item in ctrl.listdata | filter:listfilter | orderBy: ctrl.sortType | limitTo:8'>
+          <li class="listitem searchbox-listitem">{{item.label}}</li>
         </ul>
       </div>
       <div ng-show={{ctrl.isMenuState('settings')}} class='tighten-list'>
         <p>Search settings:</p>
       </div>
+    -->
     </div>
-</div>
+</md-content>
 <!--
 <div layout="column" ng-cloak>
   <md-content class="md-padding menu">
