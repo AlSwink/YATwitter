@@ -12,17 +12,17 @@ export default angular.module('twitter.app')
 
     //this.somefunction = function(){}
     //goes here. functions that will be called by html through the bindings.
-    let test;
-    $scope.id = $stateParams.tweetId
-
-    if($scope.id != null){
-        test = $scope.id
-      }
-        else {
-          test = "null"
-        }
-
-    console.log(test)
+    // let test;
+    // $scope.id = $stateParams.tweetId
+    //
+    // if($scope.id != null){
+    //     test = $scope.id
+    //   }
+    //     else {
+    //       test = "null"
+    //     }
+    //
+    // console.log(test)
   },
   controllerAs: 'ctrl',
   bindings: {}
