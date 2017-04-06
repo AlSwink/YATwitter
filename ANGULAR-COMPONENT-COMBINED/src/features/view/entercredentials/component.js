@@ -1,22 +1,34 @@
 import templateUrl from './template.html'
 
-console.log("loaded entercredentials")
-
 export default angular.module('twitter.app')
 .component('entercredentials', {
-  templateUrl, //comes from the import, installs into the templateUrl slot as if templateUrl: templateUrl
+  templateUrl,
+  controller: function (Database) {
+    this.usernameTest = ''
+    this.credentials = {
+      username: '',
+      password: ''
+    }
 
-  controller: function(Database /*services controller needs access to*/){
-    console.log(this)
-    //this.somefunction = function(){}
-    //goes here. functions that will be called by html through the bindings.
+    this.loginClick = (username, password) => {
+      if (username !== undefined && password !== undefined) {
+        this.credentials.username = username
+        this.credentials.password = password
+        console.log(this.credentials.username)
+        Database.validateUser(this.credentials)
+          .then(function (data) {
+            if (data === true) {
+              Database.loggedIn = this.credentials
+            } else {
+              console.log("Incorrect credentials")
+            }
+          })
+      }
+    }
+
+    this.registerClick = () => {
+      console.log('register')
+    }
   },
-  controllerAs: 'ctrl',
-  bindings: {}
+  controllerAs: 'ctrl'
 })
-
-//because there is no array on the module here, angular will send us the module named
-//twitter.app which was already declared in app.module.js and imported by main.js, which
-//already ran by the time this is loading.
-
-//main.js must import this script or the component will not be loaded!!
