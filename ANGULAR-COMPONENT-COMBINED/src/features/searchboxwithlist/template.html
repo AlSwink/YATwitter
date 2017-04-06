@@ -19,7 +19,7 @@
           <input class='searchbox-searchfield' ng-model="listfilter" type="text"/>
         </md-input-container>
       </md-toolbar>
-      <p>{{ctrl.getMenuState()}}</p>
+
 
       <md-content layout-padding ng-show='ctrl.isMenuState("people")'>
         <md-grid-list
@@ -27,13 +27,15 @@
           md-row-height-gt-md="4:1" md-row-height="4:1"
           md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
           <md-grid-tile
-              ng-repeat="item in ctrl.listdata"
+              ng-repeat="item in ctrl.listdata | filter:listfilter"
               ng-style="{
-                'background': item.tilecolor
+                'background': ctrl.getRandomColor()
               }"
               md-colspan='1'
+              ui-sref="tweet ({tweetId: id})"
+              class="searchbox-nocursor">
 
-              <p>{{item.uname}}</p>
+              <p>{{item}}</p>
           </md-grid-tile>
         </md-grid-list>
       </md-content>
@@ -43,18 +45,17 @@
           md-cols-gt-md="1" md-cols="1" md-cols-md="1"
           md-row-height-gt-md="4:1" md-row-height="4:1"
           md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
+          <a ui-sref="tweet ({tweetId: id})">
           <md-grid-tile
-              ng-repeat="item in ctrl.listdata"
+              ng-repeat="item in ctrl.listdata | filter:listfilter"
               ng-style="{
-                'background': item.tilecolor
+                'background': ctrl.getRandomColor()
               }"
               md-colspan='1'
-
-
-
-
-              <p>{{item.label}}</p>
+              class="searchbox-nocursor">
+              <p>{{item}}</p>
           </md-grid-tile>
+        </a>
         </md-grid-list>
       </md-content>
 <!--

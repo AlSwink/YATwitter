@@ -80,7 +80,7 @@ export default angular.module('twitter.app')
               const unameList = []
               data.forEach(function (element) {
                 element.tilecolor = getRandomColor()
-                unameList.push(element)
+                unameList.push(element.uname)
               })
               self001.listdata = unameList
 
@@ -92,7 +92,7 @@ export default angular.module('twitter.app')
               const tagList = []
               data.forEach(function (element) {
                 element.tilecolor = getRandomColor()
-                tagList.push(element)
+                tagList.push(element.label)
               })
               self001.listdata = tagList
             })
