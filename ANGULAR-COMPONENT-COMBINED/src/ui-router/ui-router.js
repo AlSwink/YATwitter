@@ -6,8 +6,8 @@ app.config(['$stateProvider', function($stateProvider) {
   $stateProvider.state('tweet', {
     url: '/tweet/:tweetId/:function',
     params: { tweetId: null ,function:null },
-    //component: 'tweet',  //
-    template: '<h3>Regular Tweet </h3>'
+    component: 'tweet',  //
+    // template: '<h3>Regular Tweet </h3>'
   })
 
   $stateProvider.state('tweets', {

@@ -7,7 +7,13 @@
   height:0px;
   font-size: 16px;
 }
-
+.searchbox-nocursor {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 .searchbox-list {
    min-width: 250px;
    max-width: 250px;

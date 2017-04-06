@@ -76,10 +76,27 @@ export default angular.module('twitter.app')
       {
 
         if (this.menuState === 'people') {
-          this.listdata = Database.getAllUsers()
+          Database.getAllUsers()
+            .then(function (data) {
+              const unameList = []
+              data.forEach(function (element) {
+                element.tilecolor = getRandomColor()
+                unameList.push(element.uname)
+              })
+              self001.listdata = unameList
+
+            })
         }
         else if (this.menuState === 'tags') {
-          this.listdata = Database.getAllTags()
+          Database.getAllTags()
+            .then(function (data) {
+              const tagList = []
+              data.forEach(function (element) {
+                element.tilecolor = getRandomColor()
+                tagList.push(element.label)
+              })
+              self001.listdata = tagList
+            })
         }
 
       }
