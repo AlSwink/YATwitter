@@ -8,9 +8,9 @@ export default angular.module('twitter.app')
 
   controller: function(Database, $scope) {
     self001 = this
-    
 
-    const fakedata = true
+
+    const fakedata = false
 
     this.refresh = () => {
       if (fakedata) {
@@ -75,10 +75,27 @@ export default angular.module('twitter.app')
       {
 
         if (this.menuState === 'people') {
-          this.listdata = Database.getAllUsers()
+          Database.getAllUsers()
+            .then(function (data) {
+              const unameList = []
+              data.forEach(function (element) {
+                element.tilecolor = getRandomColor()
+                unameList.push(element)
+              })
+              self001.listdata = unameList
+
+            })
         }
         else if (this.menuState === 'tags') {
-          this.listdata = Database.getAllTags()
+          Database.getAllTags()
+            .then(function (data) {
+              const tagList = []
+              data.forEach(function (element) {
+                element.tilecolor = getRandomColor()
+                tagList.push(element)
+              })
+              self001.listdata = tagList
+            })
         }
 
       }

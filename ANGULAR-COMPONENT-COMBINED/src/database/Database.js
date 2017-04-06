@@ -3,7 +3,7 @@ angular.module('twitter.app')
 .service('Database', function ($http) { //Database has access to http builtin service
 
   this.getUser = function (username) {
-    $http({
+    return $http({
       method: 'GET',
       url: `http://localhost:8080/api/users/@${username}`
     }).then(function successCallback (response) {
@@ -24,14 +24,14 @@ angular.module('twitter.app')
   }
 
   this.postUser = function (postedUser) {
-    $http.post('http://localhost:8080/api/users/', JSON.stringify(postedUser))
+    return $http.post('http://localhost:8080/api/users/', JSON.stringify(postedUser))
       .then(function success (response) {
         console.log(response.data)
       })
   }
 
   this.deleteUser = function (deletedUser, credentials) {
-    $http({
+    return $http({
       method: 'DELETE',
       url: `http://localhost:8080/api/users/@${deletedUser}`,
       data: JSON.stringify(credentials)
@@ -43,7 +43,7 @@ angular.module('twitter.app')
   }
 
   this.patch = function (patchedUser) {
-    $http({
+    return $http({
       method: 'PATCH',
       url: `http://localhost:8080/api/users/@${patchedUser}`
     }).then(function success (response) {
@@ -65,7 +65,7 @@ angular.module('twitter.app')
       })
   }
   this.getFeed = function (username) {
-    $http({
+    return $http({
       method: 'GET',
       url: `http://localhost:8080/api/users/@${username}/feed`
     }).then(function success (response) {
@@ -76,7 +76,7 @@ angular.module('twitter.app')
   }
 
   this.getTweets = function (username) {
-    $http({
+    return $http({
       method: 'GET',
       url: `http://localhost:8080/api/users/@${username}/tweets`
     }).then(function success (response) {
@@ -87,7 +87,7 @@ angular.module('twitter.app')
   }
 
   this.getMentions = function (username) {
-    $http({
+    return $http({
       method: 'GET',
       url: `http://localhost:8080/api/users/@${username}/mentions`
     }).then(function success (response) {
@@ -98,7 +98,7 @@ angular.module('twitter.app')
   }
 
   this.getFollowers = function (username) {
-    $http({
+    return $http({
       method: 'GET',
       url: `http://localhost:8080/api/users/@${username}/followers`
     }).then(function success (response) {
@@ -109,7 +109,7 @@ angular.module('twitter.app')
   }
 
   this.getFollowing = function (username) {
-    $http({
+    return $http({
       method: 'GET',
       url: `http://localhost:8080/api/users/@${username}/following`
     }).then(function success (response) {
@@ -120,7 +120,7 @@ angular.module('twitter.app')
   }
 
   this.getAllTags = function () {
-    $http({
+    return $http({
       method: 'GET',
       url: 'http://localhost:8080/api/tags'
     }).then(function success (response) {
@@ -131,7 +131,7 @@ angular.module('twitter.app')
   }
 
   this.getTag = function (label) {
-    $http({
+    return $http({
       method: 'GET',
       url: `http://localhost:8080/api/users/${label}`
     }).then(function success (response) {
@@ -140,4 +140,5 @@ angular.module('twitter.app')
       console.log('FAILED TO GET RETURN FROM METHOD')
     })
   }
+
 })

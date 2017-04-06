@@ -23,7 +23,7 @@
 
       <md-content layout-padding ng-show='ctrl.isMenuState("people")'>
         <md-grid-list
-          md-cols-gt-md="12" md-cols="1" md-cols-md="8"
+          md-cols-gt-md="1" md-cols="1" md-cols-md="1"
           md-row-height-gt-md="4:1" md-row-height="4:1"
           md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
           <md-grid-tile
@@ -31,8 +31,7 @@
               ng-style="{
                 'background': item.tilecolor
               }"
-              md-colspan-gt-sm="50"
-              md-rowspan-gt-sm="100">
+              md-colspan='1'
 
               <p>{{item.uname}}</p>
           </md-grid-tile>
@@ -41,7 +40,7 @@
 
       <md-content layout-padding ng-show='ctrl.isMenuState("tags")'>
         <md-grid-list
-          md-cols-gt-md="12" md-cols="1" md-cols-md="8"
+          md-cols-gt-md="1" md-cols="1" md-cols-md="1"
           md-row-height-gt-md="4:1" md-row-height="4:1"
           md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
           <md-grid-tile
@@ -49,13 +48,8 @@
               ng-style="{
                 'background': item.tilecolor
               }"
-              md-colspan-gt-sm="50"
-              md-rowspan-gt-sm="100">
+              md-colspan='1'
 
-<tweet id='{{idnum}}'></tweet>
-
-<button type="button" name="button"></button>
-<button type="button" name="button"></button>
 
 
 
