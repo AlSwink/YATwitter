@@ -7,6 +7,8 @@ export default angular.module('twitter.app')
   templateUrl, //comes from the import, installs into the templateUrl slot as if templateUrl: templateUrl
 
   controller: function(Database /*services controller needs access to*/){
+    const self001 = this
+    const getUser = {}
     this.isRegistered = false
     this.emailRequired = false
     this.usernameRequired = false
@@ -57,6 +59,13 @@ export default angular.module('twitter.app')
             }
           })
       }
+    }
+
+    this.getProfile = (username) => {
+      Database.getUser(username)
+        .then((data) => {
+          self001.user = data
+        })
     }
   },
   controllerAs: 'ctrl'

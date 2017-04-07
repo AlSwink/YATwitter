@@ -2,7 +2,7 @@
 
 <div class="profile view">
   <div class="information column" ng-show="ctrl.isRegistered">
-    <h2>John Smith</h2>
+    <h2>{{ctrl.user.profile.firstName}} {{ctrl.user.profile.lastName}}</h2>
     user: <p>{{ctrl.user.uname}}</p>
     email: <p>{{ctrl.user.profile.email}}</p>
     joined: <p>{{ctrl.user.joined | date}}</p>
