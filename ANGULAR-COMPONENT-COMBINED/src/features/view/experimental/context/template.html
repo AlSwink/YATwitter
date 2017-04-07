@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="src/features/view/following/template.css">
+
+
+    <md-grid-list
+
+        md-cols-gt-md="12" md-cols='3' md-cols-lg='4' md-cols-md="3"
+        md-cols-sm="2" md-cols-xs="1"
+        md-row-height-gt-md="4:1" md-row-height="4:1"
+        md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
+      <md-grid-tile
+          md-colspan="1" md-colspan-sm="1" md-colspan-xs="1"
+          ng-repeat="tweet in ctrl.context.before"
+          ng-style="{
+
+            'height': '100px',
+            'width': '200px'
+          }"
+          style='background-color:{{ctrl.getRandomBlue($index)}}'
+          md-rowspan='1'>
+          {{tweet.content}}
+          <md-grid-tile-header
+            ng-style="{'height':'20%'}">
+            {{tweet.author}}
+          </md-grid-tile-header>
+
+          <md-grid-tile-footer
+            ng-style="{'height':'20%'}">
+            {{tweet.posted}}
+          </md-grid-tile-footer>
+      </md-grid-tile>
+
+      <md-grid-tile
+          ng-style="{
+            'background': 'yellow'
+          }"
+          md-rowspan='1'>
+          <md-grid-tile-header
+            ng-style="{'background':'orange', 'height':'20%'}">
+            {{tweet.author}}
+          </md-grid-tile-header>
+          {{tweet.content}}
+          <md-grid-tile-footer
+            ng-style="{'background':'orange', 'height':'20%'}">
+            {{tweet.posted}}
+          </md-grid-tile-footer>
+
+      </md-grid-tile>
+
+      <md-grid-tile
+          md-colspan="1" md-colspan-sm="1" md-colspan-xs="1"
+          ng-repeat="tweet in ctrl.context.after"
+          ng-style="{
+            'background': '{{ctrl.getRandomRed($index)}}'
+          }"
+          md-rowspan='1'>
+          {{tweet.content}}
+          <md-grid-tile-header
+            ng-style="{'height':'20%'}">
+            {{tweet.author}}
+          </md-grid-tile-header>
+          <md-grid-tile-footer
+            ng-style="{'height':'20%'}">
+            {{tweet.posted}}
+          </md-grid-tile-footer>
+      </md-grid-tile>
+
+    </md-grid-list>
