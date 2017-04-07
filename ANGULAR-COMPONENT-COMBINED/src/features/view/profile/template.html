@@ -1,14 +1,14 @@
 <link rel="stylesheet" href="src/features/view/profile/template.css">
 
 <div class="profile view">
-  <div class="information column" ng-show="ctrl.isRegistered">
-    <h2>{{ctrl.user.profile.firstName}} {{ctrl.user.profile.lastName}}</h2>
+  <div class="information column" ng-show="ctrl.isRegistered()">
+    <h2>John Smith</h2>
     user: <p>{{ctrl.user.uname}}</p>
     email: <p>{{ctrl.user.profile.email}}</p>
     joined: <p>{{ctrl.user.joined | date}}</p>
   </div>
 
-  <md-content class="update view" ng-show="!ctrl.isRegistered">
+  <md-content class="update view" ng-show="!ctrl.isRegistered()">
     <form class="information column">
       <md-input-container>
         <label>{{greatbigphony}}</label>
@@ -42,7 +42,7 @@
     </form>
   </md-content>
 
-  <form name="information" class="information column" ng-show="ctrl.isRegistered">
+  <form name="information" class="information column" ng-show="ctrl.isRegistered()">
     <md-input-container>
       First<label>{{ctrl.user.profile.firstName}}</label>
       <input type="text" ng-model="first">

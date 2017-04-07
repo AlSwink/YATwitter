@@ -7,9 +7,6 @@ export default angular.module('twitter.app')
   templateUrl, //comes from the import, installs into the templateUrl slot as if templateUrl: templateUrl
 
   controller: function(Database /*services controller needs access to*/){
-    const self001 = this
-    const getUser = {}
-    this.isRegistered = false
     this.emailRequired = false
     this.usernameRequired = false
     this.passwordRequired = false
@@ -53,7 +50,7 @@ export default angular.module('twitter.app')
         Database.postUser(this.postUser)
           .then((data) => {
             if (data !== undefined) {
-              console.log(data)
+              this.isRegistered = true
             } else {
               console.log('post failed')
             }
@@ -61,11 +58,9 @@ export default angular.module('twitter.app')
       }
     }
 
-    this.getProfile = (username) => {
-      Database.getUser(username)
-        .then((data) => {
-          self001.user = data
-        })
+    this.isRegistered = () => {
+      console.log(Database.loggedIn.username)
+      return (Database.loggedIn.username !== "")
     }
   },
   controllerAs: 'ctrl'
