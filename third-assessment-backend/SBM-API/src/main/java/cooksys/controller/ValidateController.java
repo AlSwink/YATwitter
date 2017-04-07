@@ -31,16 +31,19 @@ public class ValidateController {
 		return userService.credentialCheck(username, credentials);
 	}
 	
+	@CrossOrigin
 	@GetMapping("tag/exists/{label}")
 	public boolean tagCheck(@PathVariable String label){
 		return validateService.tag(label);
 	}
 	
+	@CrossOrigin
 	@GetMapping("username/exists/@{username}")
 	public boolean exists(@PathVariable String username){
 		return validateService.userExists(username);
 	}
 	
+	@CrossOrigin
 	@GetMapping("username/available/@{username}")
 	public boolean available(@PathVariable String username){
 		return validateService.userAvailable(username);
