@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="src/features/view/following/template.css">
+
+<md-grid-list md-cols-xs="1" md-cols-sm="1" md-cols-md="1" md-cols-gt-md="6" md-row-height-gt-md="4:1" md-row-height="4:1" md-gutter="12px" md-gutter-gt-sm="8px">
+
+  <md-grid-tile style="background:{{ctrl.color}}" md-rowspan="2" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1">
+     <h4>{{ctrl.tweet.content}}</h4>
+      <md-grid-tile-footer ng-style="{'height':'20%'}" style="background:{{ctrl.color2}}">
+        <h3>{{ctrl.tweet.posted}}</h3>
+      </md-grid-tile-footer>
+      <md-grid-tile-header ng-style="{'height':'20%'}" style="background:{{ctrl.color2}}">
+        {{ctrl.tweet.id}} - {{ctrl.tweet.author}}<md-grid-tile-header>
+  </md-grid-tile>
+</md-grid-list>
+
+<!--
+<div style='height: 100px; width: 200px; margin: auto'>
+  <div style="background:{{ctrl.color2}}; height: 20%; float: top">{{ctrl.tweet.id}} - {{ctrl.tweet.author}}</div>
+  <div style="background:{{ctrl.color}}; height: 60%;"><h4>{{ctrl.tweet.content}}</h4></div>
+  <div style="background:{{ctrl.color2}}; height: 20%; float: bottom"><h3>{{ctrl.tweet.posted}}</h3></div>
+</div>
+-->
