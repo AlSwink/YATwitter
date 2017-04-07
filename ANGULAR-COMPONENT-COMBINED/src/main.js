@@ -24,5 +24,7 @@ import './features/view/followers/component'
 import './features/view/following/component'
 import './features/view/profile/component'
 import './features/view/tweet/component'
+import './features/view/user/component'
+import './features/view/tag/component'
 
 import './ui-router/ui-router'
