@@ -7,7 +7,16 @@ export default angular.module('twitter.app')
   templateUrl, //comes from the import, installs into the templateUrl slot as if templateUrl: templateUrl
 
   controller: function(Database /*services controller needs access to*/){
-    console.log(this)
+    const flwrCtrl = this
+
+    this.followerList = []
+
+    Database.getFollowers('string')
+      .then(function (data) {
+        data.forEach(function(element){
+          flwrCtrl.followerList.push(element)
+        })
+      })
     //this.somefunction = function(){}
     //goes here. functions that will be called by html through the bindings.
   },
