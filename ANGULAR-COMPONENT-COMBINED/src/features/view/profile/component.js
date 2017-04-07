@@ -55,11 +55,8 @@ export default angular.module('twitter.app')
         Database.postUser(this.postUser)
           .then((data) => {
             if (data !== undefined) {
-<<<<<<< Updated upstream
               this.user = data
-=======
               console.log('post success')
->>>>>>> Stashed changes
             } else {
               console.log('post failed')
             }

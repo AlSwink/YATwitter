@@ -16,6 +16,7 @@
       style='background-color:{{ctrl.getRandomBlue($index)}}'
       md-rowspan='1'>
       <md-grid-tile-header
+        ng-click="ctrl.clickUser(tweet.author.uname)"
         ng-style="{'height':'20%'}">
         {{tweet.author.uname}}
       </md-grid-tile-header>
