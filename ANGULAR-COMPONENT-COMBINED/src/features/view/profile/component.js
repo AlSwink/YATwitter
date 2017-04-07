@@ -6,7 +6,9 @@ export default angular.module('twitter.app')
 .component('profile', {
   templateUrl, //comes from the import, installs into the templateUrl slot as if templateUrl: templateUrl
 
-  controller: function(Database /*services controller needs access to*/){
+  controller: function(Database, $stateParams /*services controller needs access to*/){
+    let username = $stateParams.username
+
     this.emailRequired = false
     this.usernameRequired = false
     this.passwordRequired = false
@@ -27,6 +29,7 @@ export default angular.module('twitter.app')
       content: ''
     }
     this.user= {}
+
     this.deletedUser = {}
 
     this.registerClick = (username, password, firstName, lastName, email, phone) => {
@@ -93,9 +96,7 @@ export default angular.module('twitter.app')
       return (Database.loggedIn.username !== "")
     }
 
-    if(this.isRegistered()){
-      this.getUser(Database.loggedIn.username)
-    }
+    this.getUser(username)
   },
   controllerAs: 'ctrl'
 })

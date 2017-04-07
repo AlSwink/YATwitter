@@ -3,7 +3,7 @@ import templateUrl from './template.html'
 export default angular.module('twitter.app')
 .component('entercredentials', {
   templateUrl,
-  controller: function (Database) {
+  controller: function (Database, $state) {
     this.notLoggedIn = true
     this.notRegistered = false
     this.credentials = {
@@ -20,6 +20,7 @@ export default angular.module('twitter.app')
             if (data === true) {
               Database.loggedIn = this.credentials
               this.notLoggedIn = false
+              $state.go('account', {username: username})
             } else {
               this.notRegistered = true
             }

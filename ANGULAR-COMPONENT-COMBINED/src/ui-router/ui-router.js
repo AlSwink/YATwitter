@@ -33,7 +33,8 @@ app.config(['$stateProvider', function($stateProvider) {
   })
 
   $stateProvider.state('account', {
-    url: '/account',
+    url: '/account/:username',
+    params: { username: null },
     component: 'profile',
   })
 
