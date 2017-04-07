@@ -1,50 +1,48 @@
 <link rel="stylesheet" href="src/features/view/profile/template.css">
 
 <div class="profile view">
-  <div class="information column" ng-show="ctrl.isState('profile')">
+  <div class="information column" ng-show="ctrl.isRegistered">
     <h2>John Smith</h2>
     user: <p>{{ctrl.user.uname}}</p>
     email: <p>{{ctrl.user.profile.email}}</p>
-    joined: <p>{{ctrl.user.joined}}</p>
+    joined: <p>{{ctrl.user.joined | date}}</p>
   </div>
 
-  <md-content class="update view" ng-show="ctrl.isState('register')">
+  <md-content class="update view" ng-show="!ctrl.isRegistered">
     <form class="information column">
       <md-input-container>
         <label>{{greatbigphony}}</label>
-        <input type="text" ng-model="username">
+        <input type="text" ng-model="phonybologna">
       </md-input-container>
       <md-input-container>
-        Username<label>{{ctrl.user.credentials.uname}}</label>
-        <input type="text" ng-model="username">
+        Username<input required md-no-asterisk type="text" ng-model="username">
+        <span ng-show="ctrl.usernameRequired"> - required</span>
+        <span ng-show="ctrl.usernameTaken"> - username taken</span>
       </md-input-container>
       <md-input-container>
-        Password<label>{{ctrl.user.credentials.password}}</label>
-        <input type="text" ng-model="password">
+        Password<input required md-no-asterisk type="text" ng-model="password"><span ng-show="ctrl.passwordRequired"> - required</span>
       </md-input-container>
       <md-input-container>
-        First<label>{{ctrl.user.profile.firstName}}</label>
-        <input type="text" ng-model="first">
+        First Name<input type="text" ng-model="firstName">
       </md-input-container>
       <md-input-container>
-        Last<label>{{ctrl.user.profile.lastName}}</label>
-        <input type="text" ng-modle="last">
+        Last Name<input type="text" ng-modle="lastName">
       </md-input-container>
       <md-input-container>
-        Email<label>{{ctrl.user.profile.email}}</label>
-        <input type="text" ng-model="email">
+        Email<input required md-no-asterisk type="text" ng-model="email"><span ng-show="ctrl.emailRequired"> - required</span>
       </md-input-container>
       <md-input-container>
-        Phone<label>{{ctrl.user.profile.phone}}</label>
-        <input type="text" ng-model="phone">
+        Phone<input type="text" ng-model="phone">
       </md-input-container>
       <div class="select row">
-        <md-button class="button5">Register</md-button>
+        <md-button class="button5" ng-click="ctrl.registerClick(username, password, firstName, lastName, email, phone)">
+            Register
+        </md-button>
       </div>
     </form>
   </md-content>
 
-  <form name="information" class="information column" ng-show="ctrl.isState('profile')">
+  <form name="information" class="information column" ng-show="ctrl.isRegistered">
     <md-input-container>
       First<label>{{ctrl.user.profile.firstName}}</label>
       <input type="text" ng-model="first">
