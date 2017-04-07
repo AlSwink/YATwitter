@@ -40,7 +40,7 @@ app.config(['$stateProvider', function($stateProvider) {
 
   $stateProvider.state('user', {
     url: '/user/:userId/:function',
-    params: { userId: null,function:null,usersBool:false },
+    params: { userId: null, function: null, usersBool:false },
     component: 'user'
   })
 
