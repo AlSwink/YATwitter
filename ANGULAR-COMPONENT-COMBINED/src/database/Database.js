@@ -20,6 +20,20 @@ angular.module('twitter.app')
       })
   }
 
+  this.checkAvailable = (username) => {
+    return $http.get(`http://localhost:8080/api/validate/username/available/@${username}`)
+      .then(function success(response){
+        return response.data
+      })
+  }
+
+  this.checkExists = (username) => {
+    return $http.get(`http://localhost:8080/api/validate/username/exists/@${username}`)
+      .then(function success(response){
+        return response.data
+      })
+  }
+
   this.getUser = function (username) {
     return $http({
       method: 'GET',
