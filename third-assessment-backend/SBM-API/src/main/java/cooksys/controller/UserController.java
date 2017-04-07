@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -65,15 +66,15 @@ public class UserController {
 	}
 
 	@CrossOrigin
-	@PatchMapping("@{username}")
+	@PutMapping("@{username}")
 	public UserDto patchUser(@PathVariable String username, @RequestBody RequestWrapper wrapper, HttpServletResponse httpResponse){
 		return userService.patch(username, wrapper.getCredentials(), wrapper.getProfile());
 	}
 
 	@CrossOrigin
 	@DeleteMapping("@{username}")
-	public UserDto deleteUser(@PathVariable String username, @RequestBody RequestWrapper wrapper, HttpServletResponse httpResponse){
-		return userService.delete(username, wrapper.getCredentials());
+	public UserDto deleteUser(@PathVariable String username, HttpServletResponse httpResponse){
+		return userService.delete(username);
 	}
 	
 	@CrossOrigin

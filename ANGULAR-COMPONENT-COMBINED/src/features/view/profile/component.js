@@ -26,6 +26,8 @@ export default angular.module('twitter.app')
       profile: {},
       content: ''
     }
+    this.user= {}
+    this.deletedUser = {}
 
     this.registerClick = (username, password, firstName, lastName, email, phone) => {
       username === undefined ? this.usernameRequired = true : this.usernameRequired = false
@@ -50,7 +52,7 @@ export default angular.module('twitter.app')
         Database.postUser(this.postUser)
           .then((data) => {
             if (data !== undefined) {
-              this.isRegistered = true
+              this.user = data
             } else {
               console.log('post failed')
             }
@@ -58,9 +60,41 @@ export default angular.module('twitter.app')
       }
     }
 
+    this.getUser = (username) => {
+      Database.getUser(username)
+        .then((data) => {
+          this.user = data
+        })
+    }
+
+    this.updateUser = (firstName, lastName, email, phone) => {
+      this.postUser.content = ''
+      this.postUser.credentials = Database.loggedIn
+      this.postUser.profile = {firstName: firstName, lastName: lastName, email: email, phone: phone}
+      Database.patch(Database.loggedIn.username, this.postUser)
+        .then((data) => {
+          this.user = data
+        })
+    }
+
+    this.deleteUser = () => {
+      this.deletedUser = {
+        content: '',
+        credentials: Database.loggedIn,
+        profile: {}
+      }
+      Database.deleteUser(Database.loggedIn.username, this.deletedUser)
+        .then((data) => {
+          console.log(data)
+        })
+    }
+
     this.isRegistered = () => {
-      console.log(Database.loggedIn.username)
       return (Database.loggedIn.username !== "")
+    }
+
+    if(this.isRegistered()){
+      this.getUser(Database.loggedIn.username)
     }
   },
   controllerAs: 'ctrl'

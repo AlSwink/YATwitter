@@ -62,23 +62,26 @@ angular.module('twitter.app')
       })
   }
 
-  this.deleteUser = function (deletedUser, credentials) {
-    return $http({
-      method: 'DELETE',
-      url: `http://localhost:8080/api/users/@${deletedUser}`,
-      data: JSON.stringify(credentials)
-    }).then(function success (response) {
+  this.deleteUser = function (deletedUser) {
+    return $http.delete(`http://localhost:8080/api/users/@${deletedUser}`)
+    .then(function success (response) {
       return response.data
     }, function error (response) {
       console.log(response.data)
     })
   }
 
-  this.patch = function (patchedUser) {
+  this.patch = function (patchedName, patchedUser) {
+    //return $http.patch(`http://localhost:8080/api/users/@${patchedName}`, JSON.stringify(patchedUser))
     return $http({
-      method: 'PATCH',
-      url: `http://localhost:8080/api/users/@${patchedUser}`
-    }).then(function success (response) {
+      method: 'PUT',
+      url: `http://localhost:8080/api/users/@${patchedName}`,
+      data: JSON.stringify(patchedUser),
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8'
+      }
+    })
+    .then(function success (response) {
       return response.data
     }, function error (response) {
       console.log(response.data)

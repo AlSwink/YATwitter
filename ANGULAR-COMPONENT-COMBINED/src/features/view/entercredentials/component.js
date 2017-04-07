@@ -15,7 +15,6 @@ export default angular.module('twitter.app')
       if (username !== undefined && password !== undefined) {
         this.credentials.username = username
         this.credentials.password = password
-        console.log(this.credentials)
         Database.validateUser(this.credentials)
           .then((data) => {
             if (data === true) {

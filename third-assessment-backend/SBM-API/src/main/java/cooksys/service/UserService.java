@@ -68,9 +68,10 @@ public class UserService {
 	}
 
 	// deletes user, then runs through all user's tweets sets them to deleted
-	public UserDto delete(String username, Credentials credentials) {
-		if (credentialCheck(username, credentials)) {
+	public UserDto delete(String username) {
+		
 			User deleted = userRepository.findByUname(username);
+			if (credentialCheck(username, deleted.getCredentials())) {
 			deleted.setDeleted(true);
 			for (Tweet t : deleted.getTweets()) {
 				t.setDeleted(true);

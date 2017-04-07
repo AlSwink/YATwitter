@@ -2,7 +2,7 @@
 
 <div class="profile view">
   <div class="information column" ng-show="ctrl.isRegistered()">
-    <h2>John Smith</h2>
+    <h2>{{ctrl.user.profile.firstName}} {{ctrl.user.profile.lastName}}</h2>
     user: <p>{{ctrl.user.uname}}</p>
     email: <p>{{ctrl.user.profile.email}}</p>
     joined: <p>{{ctrl.user.joined | date}}</p>
@@ -60,8 +60,8 @@
       <input type="text" ng-model="phone">
     </md-input-container>
     <div class="select row">
-      <md-button class="button5">Update</md-button>
-      <md-button class="button5">Delete</md-button>
+      <md-button class="button5" ng-click="ctrl.updateUser(firstName, lastName, email, phone)">Update</md-button>
+      <md-button class="button5" ng-click="ctrl.deleteUser()">Delete</md-button>
     </div>
   </form>
 
