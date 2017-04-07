@@ -11,8 +11,8 @@
         <div class='md-toolbar-tools' layout='row' layout-align='center center'>
           <i class="material-icons icon" ng-click="ctrl.toggleSearchEnabled()">search</i>
           <!--<i class="material-icons icon" ng-click="ctrl.toggleSortByPeople()">face</i>-->
-          <i class="material-icons icon">trending_up</i>
-          <i class="material-icons icon">favorite</i>
+          <!--<i class="material-icons icon">trending_up</i>-->
+          <!--<i class="material-icons icon">favorite</i>-->
         </div>
         <md-input-container class="searchbox-search md-primary" ng-show='ctrl.searchEnabled'>
           <label class='searchbox-label'>Search {{ctrl.menuState}}</label>
@@ -21,43 +21,46 @@
       </md-toolbar>
 
 
-      <md-content layout-padding ng-show='ctrl.isMenuState("people")'>
-        <md-grid-list
+
+        <md-grid-list ng-show='ctrl.isMenuState("people")'
           md-cols-gt-md="1" md-cols="1" md-cols-md="1"
           md-row-height-gt-md="4:1" md-row-height="4:1"
-          md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
+          md-gutter-gt-md="0px" md-gutter-md="0px" md-gutter="0px">
           <md-grid-tile
               ng-repeat="item in ctrl.listdata | filter:listfilter"
-              ng-style="{
-                'background': ctrl.getRandomColor()
-              }"
+              ng-style="{}"
+              style='background-color:{{ctrl.getRandomColor($index)}}'
+
               md-colspan='1'
-              ui-sref="tweet ({tweetId: id})"
-              class="searchbox-nocursor">
+              class="searchbox-nocursor"
+
+              ng-click="ctrl.getUser(item)">
 
               <p>{{item}}</p>
           </md-grid-tile>
         </md-grid-list>
-      </md-content>
 
-      <md-content layout-padding ng-show='ctrl.isMenuState("tags")'>
-        <md-grid-list
+
+
+        <md-grid-list ng-show='ctrl.isMenuState("tags")'
           md-cols-gt-md="1" md-cols="1" md-cols-md="1"
           md-row-height-gt-md="4:1" md-row-height="4:1"
-          md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
-          <a ui-sref="tweet ({tweetId: id})">
+          md-gutter-gt-md="0px" md-gutter-md="0px" md-gutter="0px">
+
           <md-grid-tile
               ng-repeat="item in ctrl.listdata | filter:listfilter"
-              ng-style="{
-                'background': ctrl.getRandomColor()
-              }"
+              style='background-color:{{ctrl.getRandomColor($index)}}'
+
               md-colspan='1'
-              class="searchbox-nocursor">
+              class="searchbox-nocursor"
+
+              ui-sref="tag ({tagId: item})">
+
               <p>{{item}}</p>
           </md-grid-tile>
         </a>
         </md-grid-list>
-      </md-content>
+
 <!--
       <div ng-show='ctrl.isMenuState("people")' class='tighten-list'>
         <ul class="tighten-list" ng-repeat='item in ctrl.listdata | filter:listfilter | orderBy: ctrl.sortType | limitTo:12'>
