@@ -13,22 +13,47 @@ export default angular.module('twitter.app')
     //this.somefunction = function(){}
     //goes here. functions that will be called by html through the bindings.
 
-    let tweetId
-    let tweetFunction
-    let tweetTweetsBool
+    let tweetId =$stateParams.tweetId
+    let tweetFunction = $stateParams.function
+    let tweetTweetsBool = $stateParams.tweetsBool
 
-    $scope.id = $stateParams.tweetId
-    $scope.function = $stateParams.function
-    $scope.tweetsBool = $stateParams.tweetsBool
+    // $scope.id = $stateParams.tweetId
+    // $scope.function = $stateParams.function
+    // $scope.tweetsBool = $stateParams.tweetsBool
+    // console.log($stateParams.tweetsBool);
 
-    if($scope.id != null){
-        tweetId = $scope.id
-        tweetFunction = $scope.function
-        tweetTweetsBool = $scope.tweetTweetsBool
+    switch(tweetFunction) {
+     case "like":
+         console.log("Like"+ " "+ tweetId)
+         break
+     case "reply":
+        console.log("reply"+ " "+ tweetId)
+        break
+     case "repost":
+        console.log("repost"+ " "+ tweetId)
+        break
+     case "tags":
+        console.log("tags"+ " "+ tweetId)
+        break
+     case "getLikes":
+        console.log("getLikes"+ " "+ tweetId)
+        break
+      case "context":
+        console.log("context"+ " "+ tweetId)
+        break
+      case "replies":
+        console.log("replies"+ " "+ tweetId)
+        break
+      case "getRepost":
+        console.log("getRepost"+ " "+ tweetId)
+        break
+      case "mentions":
+        console.log("mentions"+ " "+ tweetId)
+        break
+      default:
+        console.log("NOT A FUNCTION"+ " "+ tweetId)
       }
-        else {
-          tweetId = "null"
-        }
+
 
     console.log(tweetId,tweetFunction,tweetTweetsBool)
   },
