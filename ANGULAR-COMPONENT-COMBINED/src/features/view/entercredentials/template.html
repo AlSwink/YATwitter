@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="src/features/view/entercredentials/template.css">
 
-<md-content name="Credentials" class="credentials view" ng-show="ctrl.notLoggedIn">
+<md-content name="Credentials" class="credentials view" ng-show="!ctrl.loggedIn()">
   <div class="input row">
     <md-input-container class="username">
       <label>username</label>

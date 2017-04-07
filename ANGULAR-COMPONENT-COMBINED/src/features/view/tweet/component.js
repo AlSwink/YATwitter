@@ -7,7 +7,7 @@ export default angular.module('twitter.app')
   templateUrl, //comes from the import, installs into the templateUrl slot as if templateUrl: templateUrl
 
   //controller: function(Database /*services controller needs access to*/){
-  controller: function($scope,$stateParams){
+  controller: function(Database, tweetService, $scope, $stateParams) {
     console.log(this)
 
     //this.somefunction = function(){}
@@ -54,8 +54,17 @@ export default angular.module('twitter.app')
         console.log("NOT A FUNCTION"+ " "+ tweetId)
       }
 
+      this.postTweet = (content, thisScope) => {
+        tweetService.postTweet({credentials: Database.loggedIn, content: content})
+          .then((data) => {
+            console.log(data)
+            thisScope.tweetcontent = ''
+          })
+      }
 
-    console.log(tweetId,tweetFunction,tweetTweetsBool)
+      this.loggedIn = () => {
+        return (Database.loggedIn.username !== '')
+      }
   },
   controllerAs: 'ctrl',
   bindings: {}

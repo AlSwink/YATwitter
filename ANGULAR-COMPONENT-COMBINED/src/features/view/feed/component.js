@@ -2,21 +2,52 @@ import templateUrl from './template.html'
 
 console.log("loaded feed")
 
+const testTweet1 = {
+  id: 9,
+  author: 'Jon Grady',
+  posted: '4/24/17',
+  content: 'this is the content of testTweet'
+
+}
+const testTweet2 = {
+  id: 9,
+  author: 'Jon Grady',
+  posted: '4/24/17',
+  content: 'this is the content of testTweet'
+
+}
+const testTweet3 = {
+  id: 9,
+  author: 'Jon Grady',
+  posted: '4/24/17',
+  content: 'this is the content of testTweet'
+
+}
+const testTweet4 = {
+  id: 9,
+  author: 'Jon Grady',
+  posted: '4/24/17',
+  content: 'this is the content of testTweet'
+
+}
+
 export default angular.module('twitter.app')
 .component('feed', {
-  templateUrl, //comes from the import, installs into the templateUrl slot as if templateUrl: templateUrl
+  templateUrl,
 
-  controller: function(Database,$scope,$stateParams /*services controller needs access to*/){
-    console.log(this)
-    //this.somefunction = function(){}
-    //goes here. functions that will be called by html through the bindings.
+  controller: function (Database, $scope, $stateParams) {
+    this.usersFeed = []
+
+    let stop = $interval(function () {
+      console.log('interval')
+    }, 100)
+
+    Database.getFeed(Database.loggedIn.username)
+      .then((data) => {
+        this.usersFeed = data
+        console.log('data')
+        console.log(data)
+      })
   },
-  controllerAs: 'ctrl',
-  bindings: {}
+  controllerAs: 'ctrl'
 })
-
-//because there is no array on the module here, angular will send us the module named
-//twitter.app which was already declared in app.module.js and imported by main.js, which
-//already ran by the time this is loading.
-
-//main.js must import this script or the component will not be loaded!!

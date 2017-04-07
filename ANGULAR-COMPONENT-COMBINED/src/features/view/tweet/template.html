@@ -1,7 +1,10 @@
-<link rel="stylesheet" href="src/features/view/profile/template.css">
+<link rel="stylesheet" href="src/features/view/tweet/template.css">
 
-<md-content class="view">
-    <div layout="column" layout-xs="column">
-    <h3>TWEETS {{ctrl.tweetId}}</h3>
-    </div>
-</md-content>
+<h2 class="view header" ng-show="!ctrl.loggedIn()">LOGIN TO POST A TWEET</h2>
+<div class="view" ng-show="ctrl.loggedIn()">
+  <h2 class="header">Tweet</h2>
+  <md-input-container class="content">
+    <textarea ng-model="tweetcontent" md-select-on-focus></textarea>
+  </md-input-container>
+  <md-button class="button10" ng-click="ctrl.postTweet(tweetcontent, this)">Post</md-button>
+</div>
