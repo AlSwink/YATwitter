@@ -167,7 +167,7 @@ angular.module('twitter.app')
   this.getTag = function (label) {
     return $http({
       method: 'GET',
-      url: `http://localhost:8080/api/users/${label}`
+      url: `http://localhost:8080/api/tags/${label}`
     }).then(function success (response) {
       return response.data
     }, function error (response) {

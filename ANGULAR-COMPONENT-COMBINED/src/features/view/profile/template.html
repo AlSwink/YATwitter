@@ -60,8 +60,8 @@
       <input type="text" ng-model="phone">
     </md-input-container>
     <div class="select row">
-      <md-button class="button5" ng-click="ctrl.updateUser(firstName, lastName, email, phone)">Update</md-button>
-      <md-button class="button5" ng-click="ctrl.deleteUser()">Delete</md-button>
+      <md-button class="button5" ng-show="ctrl.otherUser()" ng-click="ctrl.updateUser(firstName, lastName, email, phone)">Update</md-button>
+      <md-button class="button5" ng-show="ctrl.otherUser()" ng-click="ctrl.deleteUser()">Delete</md-button>
     </div>
   </form>
 

@@ -1,5 +1,12 @@
 .feedview {
-  width: 100%;
+  width: 75vw;
   height: 100%;
   background-color: #E2E8E4;
+  justify-content: center;
+}
+
+.taglabel {
+  background-color: #43EE78;
+  text-align: center;
+  font-size: 3em;
 }

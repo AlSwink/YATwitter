@@ -55,8 +55,11 @@ export default angular.module('twitter.app')
         Database.postUser(this.postUser)
           .then((data) => {
             if (data !== undefined) {
+
               this.user = data
+
               console.log('post success')
+
             } else {
               console.log('post failed')
             }
@@ -89,12 +92,19 @@ export default angular.module('twitter.app')
       }
       Database.deleteUser(Database.loggedIn.username, this.deletedUser)
         .then((data) => {
-          console.log(data)
+          Database.loggedIn = {
+            username: '',
+            password: ''
+          }
         })
     }
 
     this.isRegistered = () => {
       return (Database.loggedIn.username !== "")
+    }
+
+    this.otherUser = () => {
+      return (username === Database.loggedIn.username)
     }
 
     this.getUser(username)

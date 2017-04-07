@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityManager;
+
 import org.springframework.stereotype.Service;
 
 import cooksys.TweetByTimeComparator;
@@ -28,14 +30,16 @@ public class UserService {
 	UserMapper userMapper;
 	TweetMapper tweetMapper;
 	TweetRepository tweetRepository;
+	EntityManager entityManager;
 
 	public UserService(UserRepository userRepo, UserMapper userMap, TweetMapper tweetMapper,
-			TweetRepository tweetRepository) {
+			TweetRepository tweetRepository, EntityManager entityManager) {
 		super();
 		this.userMapper = userMap;
 		this.userRepository = userRepo;
 		this.tweetMapper = tweetMapper;
 		this.tweetRepository = tweetRepository;
+		this.entityManager = entityManager;
 	}
 
 	// searches database for all users that have not been deleted using derived query defined in UserRepository
@@ -53,6 +57,8 @@ public class UserService {
 			u.setCredentials(credentials);
 			u.setProfile(profile);
 			userRepository.save(u);
+			entityManager.detach(u);
+			u = userRepository.findByUname(credentials.getUsername());
 		
 		}  //or if user has been previously deleted, reactivates it
 		else if (u.isDeleted() == true) {
