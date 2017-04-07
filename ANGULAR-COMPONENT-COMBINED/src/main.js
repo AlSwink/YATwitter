@@ -5,7 +5,8 @@ import './app/app.module'
 
 import './database/Database'
 import './database/tweetService'
-
+import './database/tagService'
+import './database/color'
 // import './features/topmenu/component'
 
 import './features/bottommenu/component'
@@ -24,5 +25,13 @@ import './features/view/followers/component'
 import './features/view/following/component'
 import './features/view/profile/component'
 import './features/view/tweet/component'
+
+//experimental
+import './features/view/experimental/userpart/component'
+import './features/view/experimental/tweetpart/component'
+import './features/view/experimental/userdisplay/component'
+import './features/view/experimental/tweetdisplay/component'
+import './features/view/experimental/context/component'
+
 
 import './ui-router/ui-router'
