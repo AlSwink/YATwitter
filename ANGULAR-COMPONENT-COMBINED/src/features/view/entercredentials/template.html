@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="src/features/view/entercredentials/template.css">
 
-<md-content name="Credentials" class="credentials view">
+<md-content name="Credentials" class="credentials view" ng-show="ctrl.notLoggedIn">
   <div class="input row">
     <md-input-container class="username">
       <label>username</label>
@@ -15,4 +15,6 @@
     <md-button class="button2" ng-click="ctrl.loginClick(username, password)">Login</md-button>
     <md-button class="button2" ng-click="ctrl.registerClick()">Register</md-button>
   </div>
+  <span class="message" ng-show="ctrl.taken">username taken</span>
+  <span class="message" ng-show="ctrl.notRegistered">account not registered</span>
 </md-content>

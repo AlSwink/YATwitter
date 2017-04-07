@@ -17,6 +17,10 @@
   align-items: center;
 }
 
+.message {
+  align-self: center;
+}
+
 .button2 {
   background-color: #006C84;
 }
