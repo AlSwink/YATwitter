@@ -4,7 +4,8 @@ export default angular.module('twitter.app')
 .component('entercredentials', {
   templateUrl,
   controller: function (Database) {
-    this.usernameTest = ''
+    this.notLoggedIn = true
+    this.notRegistered = false
     this.credentials = {
       username: '',
       password: ''
@@ -14,13 +15,14 @@ export default angular.module('twitter.app')
       if (username !== undefined && password !== undefined) {
         this.credentials.username = username
         this.credentials.password = password
-        console.log(this.credentials.username)
+        console.log(this.credentials)
         Database.validateUser(this.credentials)
-          .then(function (data) {
+          .then((data) => {
             if (data === true) {
               Database.loggedIn = this.credentials
+              this.notLoggedIn = false
             } else {
-              console.log("Incorrect credentials")
+              this.notRegistered = true
             }
           })
       }
