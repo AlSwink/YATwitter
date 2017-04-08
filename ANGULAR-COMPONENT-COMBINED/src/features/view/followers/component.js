@@ -7,25 +7,16 @@ export default angular.module('twitter.app')
   templateUrl, //comes from the import, installs into the templateUrl slot as if templateUrl: templateUrl
 
   controller: function(Database /*services controller needs access to*/){
-    const flwrCtrl = this
 
     this.followerList = []
 
-    Database.getFollowers('string')
-      .then(function (data) {
-        data.forEach(function(element){
-          flwrCtrl.followerList.push(element)
+    if (Database.loggedIn.username !== '') {
+      Database.getFollowers(Database.loggedIn.username)
+        .then((data) => {
+          this.followerList = data
+          console.log(data)
         })
-      })
-    //this.somefunction = function(){}
-    //goes here. functions that will be called by html through the bindings.
+    }
   },
-  controllerAs: 'ctrl',
-  bindings: {}
+  controllerAs: 'ctrl'
 })
-
-//because there is no array on the module here, angular will send us the module named
-//twitter.app which was already declared in app.module.js and imported by main.js, which
-//already ran by the time this is loading.
-
-//main.js must import this script or the component will not be loaded!!

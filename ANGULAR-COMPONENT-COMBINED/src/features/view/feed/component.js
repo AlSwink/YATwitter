@@ -14,8 +14,6 @@ export default angular.module('twitter.app')
     Database.getFeed(Database.loggedIn.username)
       .then((data) => {
         this.usersFeed = data
-        console.log('data')
-        console.log(data)
       })
 
     this.clickUser = (username) => {

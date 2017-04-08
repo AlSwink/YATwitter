@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="src/features/view/followers/template.css">
 
-<md-content class=feedview>
+<md-content class=followingview>
   <md-grid-list
     md-cols-gt-md="12" md-cols='1' md-cols-lg='1' md-cols-md="1"
     md-cols-sm="2" md-cols-xs="1"
@@ -8,22 +8,28 @@
     md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
     <md-grid-tile
       md-colspan="1" md-colspan-sm="1" md-colspan-xs="1"
-      ng-repeat="tweet in ctrl.usersFeed"
+      ng-repeat="user in ctrl.followerList"
       ng-style="{
         'height': '100px',
         'width': '200px'
       }"
-      style='background-color:{{ctrl.getRandomBlue($index)}}'
+      style='background-color: #8BEDC7;'
       md-rowspan='1'>
       <md-grid-tile-header
-        <!-- ng-click="ctrl.clickUser(tweet.author.uname)"
+         ng-click="ctrl.clickUser(tweet.author.uname)"
         ng-style="{'height':'20%'}">
-        {{tweet.author.uname}} -->
+        {{user.uname}}
       </md-grid-tile-header>
-        <!-- {{tweet.content}} -->
+      <span class="bolden padded">{{user.profile.firstName}} {{user.profile.lastName}}</span>
+      <span class="padded">
+        <span class="bolden">email:</span> <span>{{user.profile.email}}</span>
+      </span>
+      <span class="padded">
+        <span class="bolden">phone:</span> <span>{{user.profile.phone}}</span>
+      </span>
       <md-grid-tile-footer
-        <!-- ng-style="{'height':'20%'}">
-        {{tweet.posted | date}} -->
+        ng-style="{'height':'20%'}">
+        {{user.joined | date}}
       </md-grid-tile-footer>
     </md-grid-tile>
   </md-grid-list>
