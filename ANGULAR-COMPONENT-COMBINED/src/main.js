@@ -9,13 +9,9 @@ import './database/tagService'
 import './database/color'
 // import './features/topmenu/component'
 
-import './features/bottommenu/component'
 import './features/searchboxwithlist/component'
-import './features/searchboxwithlistALTERNATIVE/component'
 import './features/sidemenu/component'
-import './features/sidemenuALTERNATIVE/component'
 import './features/topmenu/component'
-import './features/topstatusbar/component'
 
 
 // views
@@ -29,10 +25,6 @@ import './features/view/user/component'
 import './features/view/tag/component'
 
 //experimental
-import './features/view/experimental/userpart/component'
-import './features/view/experimental/tweetpart/component'
-import './features/view/experimental/userdisplay/component'
-import './features/view/experimental/tweetdisplay/component'
 import './features/view/experimental/context/component'
 
 
