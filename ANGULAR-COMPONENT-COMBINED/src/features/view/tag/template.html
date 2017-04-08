@@ -2,24 +2,26 @@
 
 <md-content class='feedview'>
 
-    <md-grid-list
-      md-cols-gt-md="12" md-cols='1' md-cols-lg='1' md-cols-md="1"
-      md-cols-sm="2" md-cols-xs="1"
-      md-row-height-gt-md="4:1" md-row-height="4:1"
-      md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
-      <md-grid-tile
-        md-colspan="1" md-colspan-sm="1" md-colspan-xs="1"
-        ng-repeat="tag in ctrl.tagsList"
-        ng-style="{
-          'height': '30px',
-          'width': '10px'
-        }"
-        md-rowspan='1'>
-        <div>
-          <div class="taglabel">{{tag.label}}</div>
-          <p> First used:{{tag.firstUsed | date}} </p>
-          <p>Last Used:{{tag.lastUsed | date}}</p>
-        </div>
-      </md-grid-tile>
+    <md-grid-list ng-show="ctrl.multiTag()"
+      md-cols-xs="1" md-cols-sm="1" md-cols-md="1" md-cols-gt-md="6" md-row-height-gt-md="2:1" md-row-height="4:1" md-gutter="12px" md-gutter-gt-sm="8px">
+
+      <md-grid-tile ng-repeat="tag in ctrl.tagsList" md-rowspan="2" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1">
+      <h4>{{tag.label}}</h4>
+      <md-grid-tile-footer ng-style="{'height':'20%'}">
+        <h3>Last Used: {{tag.lastUsed | date}}</h3>
+      </md-grid-tile-footer>
+      <md-grid-tile-header ng-style="{'height':'20%'}">First Used: {{tag.firstUsed | date}}<md-grid-tile-header>
+    </md-grid-tile>
+    </md-grid-list>
+    <md-grid-list ng-show="!ctrl.multiTag()"
+      md-cols-xs="1" md-cols-sm="1" md-cols-md="1" md-cols-gt-md="6" md-row-height-gt-md="2:1" md-row-height="4:1" md-gutter="12px" md-gutter-gt-sm="8px">
+
+      <md-grid-tile ng-repeat="tag in ctrl.tagsList" md-rowspan="2" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1">
+      <h4>{{tag.content}}</h4>
+      <md-grid-tile-footer ng-style="{'height':'20%'}">
+        <h3>Author: {{tag.author.uname}}</h3>
+      </md-grid-tile-footer>
+      <md-grid-tile-header ng-style="{'height':'20%'}">Posted: {{tag.posted | date}}<md-grid-tile-header>
+    </md-grid-tile>
     </md-grid-list>
 </md-content>

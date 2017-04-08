@@ -8,7 +8,8 @@ export default angular.module('twitter.app')
 
   //controller: function(Database /*services controller needs access to*/){
   controller: function(Database, color, $scope, $stateParams){
-    this.displayList = {}
+    this.tagsList = {}
+    this.singleTag = {}
     //this.somefunction = function(){}
     //goes here. functions that will be called by html through the bindings.
 
@@ -17,13 +18,17 @@ export default angular.module('twitter.app')
     if(tagsBool){
       Database.getAllTags()
         .then((data) => {
-          this.displayList = data
+          this.tagsList = data
         })
     } else {
       Database.getTag(tagId)
         .then((data) => {
-          this.displayList = data
+          this.tagsList = data
         })
+    }
+
+    this.multiTag = () => {
+      return tagsBool
     }
 
   },

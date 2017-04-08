@@ -21,7 +21,6 @@ export default angular.module('twitter.app')
               Database.loggedIn = this.credentials
               this.notLoggedIn = false
               $state.go('account', {username: username})
-              console.log(Database.loggedIn.username)
             } else {
               this.notRegistered = true
             }
