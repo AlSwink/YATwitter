@@ -107,6 +107,13 @@ export default angular.module('twitter.app')
       return (username === Database.loggedIn.username)
     }
 
+    this.logOut = () => {
+      Database.loggedIn = {
+        username: '',
+        password: ''
+      }
+    }
+
     this.getUser(username)
   },
   controllerAs: 'ctrl'

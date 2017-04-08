@@ -1,7 +1,27 @@
-<link rel="stylesheet" href="src/features/view/profile/template.css">
+<link rel="stylesheet" href="src/features/view/tag/template.css">
 
-<md-content class="view">
-    <div layout="column" layout-xs="column">
-    <h3>users</h3>
-    </div>
+<md-content class='feedview'>
+
+    <md-grid-list
+      md-cols-xs="1" md-cols-sm="1" md-cols-md="1" md-cols-gt-md="6" md-row-height-gt-md="2:1" md-row-height="4:1" md-gutter="12px" md-gutter-gt-sm="8px">
+      <md-grid-tile md-rowspan="2" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1">
+      <h4>{{ctrl.user.uname}}</h4>
+      <md-grid-tile-footer ng-style="{'height':'20%'}">
+        <h3>Last Used: </h3>
+      </md-grid-tile-footer>
+      <md-grid-tile-header ng-style="{'height':'20%'}">First Used:<md-grid-tile-header>
+    </md-grid-tile>
+      <md-grid-tile ng-repeat="user in ctrl.usersList" md-rowspan="2" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1">
+      <h4>{{user.uname}}</h4>
+      <md-grid-tile-footer ng-style="{'height':'20%'}">
+        <div class="userbuttons">
+          <h4 ng-click="ctrl.follow(user.uname)">Follow</h4>
+          <h4 ng-click="ctrl.unfollow(user.uname)">Unfollow</h4>
+          <h4 ng-click="ctrl.feed(user.uname)">Feed</h4>
+        </div>
+      </md-grid-tile-footer>
+      <md-grid-tile-header ng-style="{'height':'20%'}">Joined: {{user.joined | date}}<md-grid-tile-header>
+    </md-grid-tile>
+    </md-grid-list>
+
 </md-content>

@@ -1,18 +1,81 @@
-<link rel="stylesheet" href="src/features/view/profile/template.css">
+<link rel="stylesheet" href="src/features/view/user/template.css">
 
-<md-toolbar class='md-primary' layout='column' layout-align='center center'>
-  <div class='md-toolbar-tools' layout='row' layout-align='right bottom'>
-    <h5>Yet Another Twitter</h5>
-    <i class="material-icons searchbox-bigbutton" ng-click="ctrl.setMenuState('people')">contacts</i>
-    <i class="material-icons searchbox-bigbutton" ng-click="ctrl.setMenuState('tags')">storage</i>
-    <i class="material-icons searchbox-bigbutton" ng-click="ctrl.setMenuState('tags')">flag</i>
-    <i class="material-icons searchbox-bigbutton" ng-click="ctrl.setMenuState('tags')">report</i>
+<md-content class='feedview'>
+  <div class="left column">
+    <div class="header">
+      <h2>{{ctrl.user.profile.firstName}} {{ctrl.user.profile.lastName}}</h2>
+      user: <p>{{ctrl.user.uname}}</p>
+      email: <p>{{ctrl.user.profile.email}}</p>
+      joined: <p>{{ctrl.user.joined | date}}</p>
+      <div class="userbuttons">
+        <h4 ng-click="ctrl.follow(user.uname)">Follow</h4>
+        <h4 ng-click="ctrl.unfollow(user.uname)">Unfollow</h4>
+        <h4 ng-click="ctrl.setMode('feed')">Show Feed</h4>
+        <h4 ng-click="ctrl.setMode('followers')">Show Followers</h4>
+        <h4 ng-click="ctrl.setMode('following')">Show Following</h4>
+        <h4 ng-click="ctrl.setMode('tweets')">Show Tweets</h4>
 
-    <!--<i class="material-icons bigger-icon" ng-click="ctrl.setMenuState('settings')">application_settings</i>-->
+      </div>
+    </div>
+
   </div>
-</md-toolbar>
-<div layout='row' layout-sm='column' layout-xs='column'>
-  <div style='width: 50%; margin-left:auto; min-width: 300px; flex:1'><profile></profile></div>
-  <div flex style='min-width: 10px'></div>
-  <div style='width: 50%; margin-left:auto; min-width: 300px; flex:1'><context></context></div>
+  <div class="right column">
+    <md-grid-list ng-show="ctrl.showFeed()"
+      md-cols-xs="1" md-cols-sm="1" md-cols-md="1" md-cols-gt-md="6" md-row-height-gt-md="2:1" md-row-height="4:1" md-gutter="12px" md-gutter-gt-sm="8px">
+      <md-grid-tile ng-repeat="tweet in ctrl.feedList" md-rowspan="2" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1">
+        <h4>{{tweet.content}}</h4>
+
+        <md-grid-tile-footer ng-style="{'height':'20%'}">
+          <div class="tweetbuttons">
+            <h3>Author: {{tweet.author.uname}}</h3>
+            <h4 ng-click="ctrl.like(tweet.id)">Like</h4>
+          </div>
+        </md-grid-tile-footer>
+        <md-grid-tile-header ng-style="{'height':'20%'}">Posted: {{tweet.posted | date}}<md-grid-tile-header>
+    </md-grid-tile>
+    </md-grid-list>
+
+    <md-grid-list ng-show="ctrl.showTweets()"
+      md-cols-xs="1" md-cols-sm="1" md-cols-md="1" md-cols-gt-md="6" md-row-height-gt-md="2:1" md-row-height="4:1" md-gutter="12px" md-gutter-gt-sm="8px">
+      <md-grid-tile ng-repeat="tweet in ctrl.tweetsList" md-rowspan="2" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1">
+        <h4>{{tweet.content}}</h4>
+
+        <md-grid-tile-footer ng-style="{'height':'20%'}">
+          <div class="tweetbuttons">
+            <h3>Author: {{tweet.author.uname}}</h3>
+            <h4 ng-click="ctrl.like(tweet.id)">Like</h4>
+          </div>
+        </md-grid-tile-footer>
+        <md-grid-tile-header ng-style="{'height':'20%'}">Posted: {{tweet.posted | date}}<md-grid-tile-header>
+    </md-grid-tile>
+    </md-grid-list>
+
+    <md-grid-list ng-show="ctrl.showFollowers()"
+      md-cols-xs="1" md-cols-sm="1" md-cols-md="1" md-cols-gt-md="6" md-row-height-gt-md="2:1" md-row-height="4:1" md-gutter="12px" md-gutter-gt-sm="8px">
+      <md-grid-tile ng-repeat="user in ctrl.flrList" md-rowspan="2" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1">
+      <h4>{{user.uname}}</h4>
+      <md-grid-tile-footer ng-style="{'height':'20%'}">
+        <div class="userbuttons">
+          <h4 ng-click="ctrl.follow(user.uname)">Follow</h4>
+          <h4 ng-click="ctrl.unfollow(user.uname)">Unfollow</h4>
+        </div>
+      </md-grid-tile-footer>
+      <md-grid-tile-header ng-style="{'height':'20%'}">Joined: {{user.joined | date}}<md-grid-tile-header>
+    </md-grid-tile>
+    </md-grid-list>
+
+    <md-grid-list ng-show="ctrl.showFollowing()"
+      md-cols-xs="1" md-cols-sm="1" md-cols-md="1" md-cols-gt-md="6" md-row-height-gt-md="2:1" md-row-height="4:1" md-gutter="12px" md-gutter-gt-sm="8px">
+      <md-grid-tile ng-repeat="user in ctrl.flgList" md-rowspan="2" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1">
+      <h4>{{user.uname}}</h4>
+      <md-grid-tile-footer ng-style="{'height':'20%'}">
+        <div class="userbuttons">
+          <h4 ng-click="ctrl.follow(user.uname)">Follow</h4>
+          <h4 ng-click="ctrl.unfollow(user.uname)">Unfollow</h4>
+        </div>
+      </md-grid-tile-footer>
+      <md-grid-tile-header ng-style="{'height':'20%'}">Joined: {{user.joined | date}}<md-grid-tile-header>
+    </md-grid-tile>
+    </md-grid-list>
 </div>
+</md-content>

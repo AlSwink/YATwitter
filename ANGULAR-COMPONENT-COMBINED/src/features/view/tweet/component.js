@@ -7,8 +7,9 @@ export default angular.module('twitter.app')
   templateUrl, //comes from the import, installs into the templateUrl slot as if templateUrl: templateUrl
 
   //controller: function(Database /*services controller needs access to*/){
-  controller: function(Database, tweetService, $scope, $stateParams) {
+  controller: function(Database, tweetService, color, $scope, $stateParams) {
     console.log(this)
+    let self001 = this
 
     //this.somefunction = function(){}
     //goes here. functions that will be called by html through the bindings.
@@ -76,9 +77,10 @@ export default angular.module('twitter.app')
       console.log("id or not function"+ " "+ this.tweetId)
       tweetService.getTweet(this.tweetId)
         .then(function (data) {
-          this.tweetList = data
+          self001.tweetList = data
           })
       }
+    }
 
       this.postTweet = (content, thisScope) => {
         tweetService.postTweet({credentials: Database.loggedIn, content: content})
@@ -91,6 +93,35 @@ export default angular.module('twitter.app')
       this.loggedIn = () => {
         return (Database.loggedIn.username !== '')
       }
+
+      this.like = (id) => {
+        tweetService.likeTweet(id, Database.loggedIn)
+          .then((data) => {
+            console.log(data)
+          })
+      }
+
+      this.reply = (tweetcontent, id) => {
+        tweetService.replyTweet(id, {credentials: Database.loggedIn, content: tweetcontent})
+        .then((data) => {
+          console.log(data)
+
+        })
+      }
+
+      this.repost = (tweetcontent, id) => {
+        tweetService.rePostTweet(id, {credentials: Database.loggedIn, content: tweetcontent})
+        .then((data) => {
+          console.log(data)
+        
+        })
+      }
+
+      tweetService.getAllTweets()
+        .then(function (data) {
+          self001.tweetList = data
+          })
+      this.getRandomColor = (index) => color.getRandomColor(index)
   },
 
   controllerAs: 'ctrl',

@@ -4,61 +4,78 @@ console.log("loaded userComponent")
 
 export default angular.module('twitter.app')
 .component('user', {
-  templateUrl, //comes from the import, installs into the templateUrl slot as if templateUrl: templateUrl
-
-  //controller: function(Database /*services controller needs access to*/){
-  controller: function($scope, $state, $stateParams){
+  templateUrl,
+  controller: function(tweetService, Database, $scope, $state, color, $stateParams){
     console.log(this)
 
-    //this.somefunction = function(){}
-    //goes here. functions that will be called by html through the bindings.
-
     let userId = $stateParams.userId
-    let userFunction = $stateParams.function
-    let usersBool = $stateParams.usersBool
 
-    this.users = []
-    this.mode = 'none'
-    switch(userFunction) {
-     case "follow":
-         console.log("follow"+ " "+ userId)
-         Database.follow(userId, Database.getCredentials())
-         break
-     case "unfollow":
-        console.log("unfollow"+ " "+ userId)
-        Database.unfollow(userId, Database.getCredentials())
-        break
-     case "users":
-       Database.getAllUsers()
-         .then( (data) => {
-           const userList = []
-           data.forEach(function (element) {
-             userList.push(element)
-           })
-           this.listdata = users
+    this.flrList = []
+    this.flgList = []
+    this.tweetsList = []
+    this.feedList = []
+    this.user = {}
+    this.mode = 'following'
 
-         })
-        console.log("tweets"+ " "+ userId)
-        break
-     case "feed":
-        console.log("feed"+ " "+ userId)
-        break
-     case "mentions":
-        console.log("mentions"+ " "+ userId)
-        break
-     case "followers":
-        console.log("followers"+ " "+ userId)
-        break
-      case "following":
-        console.log("following"+ " "+ userId)
-        break
-      default:
-        console.log("NOT A FUNCTION"+ " "+ userId)
-      }
+    this.follow = (username) => {
+      Database.follow(username, Database.loggedIn)
+    }
+    this.unfollow = (username) => {
+      Database.unfollow(username, Database.loggedIn)
+    }
 
-    console.log(userId,userFunction,usersBool)
+    this.getRandomColor = (index) => color.getRandomColor(index)
 
+    Database.getUser(userId)
+      .then((data) => {
+        this.user = data
+      })
 
+    Database.getFeed(userId)
+      .then((data) => {
+        this.feedList = data
+      })
+    Database.getTweets(userId)
+      .then((data) => {
+        this.tweetsList = data
+      })
+    Database.getFollowers(userId)
+      .then((data) => {
+        this.flrList = data
+      })
+    Database.getFollowing(userId)
+      .then((data) => {
+        this.flgList = data
+      })
+
+    this.setMode = (mode) => this.mode = mode
+
+    this.showFollowers = () => {
+      if(this.mode === 'followers'){
+        return true
+      } else return false
+    }
+    this.showFollowing = () => {
+      if(this.mode === 'following'){
+        return true
+      } else return false
+    }
+    this.showFeed = () => {
+      if(this.mode === 'feed'){
+        return true
+      } else return false
+    }
+    this.showTweets = () => {
+      if(this.mode === 'tweets'){
+        return true
+      } else return false
+    }
+    this.like = (id) => {
+      tweetService.likeTweet(id, Database.loggedIn)
+        .then((data) => {
+          console.log(data)
+        })
+    }
 
   },
   controllerAs: 'ctrl',
