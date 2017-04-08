@@ -3,16 +3,29 @@
 <script src="lib/angular-ui-router.js"></script>
 <script src="ui-router.js"></script>
 
-<md-content class="menu1">
 
-  <h2 class="header">Welcome to Yet Another Twitter!</h2>
 
-    <div layout="row" layout-xs="column">
-      <!--<md-button flex ng-click = "ctrl.getTest()" class="md-raised">TWEET</md-button> -->
-      <md-button flex class="button3" ui-sref="tweet ({tweetId: id})">TWEET</md-button>
-      <md-button flex class="button3" ui-sref="feed">FEED</md-button>
-      <md-button flex class="button3" ui-sref="following">FOLLOWING</md-button>
-      <md-button flex class="button3" ui-sref="followers">FOLLOWERS</md-button>
-      <md-button flex class="button3" ui-sref="account">ACCOUNT</md-button>
-    </div>
-</md-content>
+<div class = "bar">
+
+    <md-button class="md-raised" aria-label="Learn More"ui-sref="tweet">
+    TWEET
+    </md-button>
+
+    <md-button class="md-raised" aria-label="Learn More"ui-sref="feed">
+    FEED
+    </md-button>
+
+    <md-button class="md-raised" aria-label="Learn More"ui-sref="following">
+    FOLLOWING
+    </md-button>
+    
+    <md-button class="md-raised" aria-label="Learn More"ui-sref="followers">
+    FOLLOWERS
+    </md-button>
+
+    <md-button class="md-raised" aria-label="Learn More"ui-sref="account">
+    ACCOUNT
+    </md-button>
+
+
+</div>
