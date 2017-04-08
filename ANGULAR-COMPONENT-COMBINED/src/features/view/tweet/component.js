@@ -13,45 +13,71 @@ export default angular.module('twitter.app')
     //this.somefunction = function(){}
     //goes here. functions that will be called by html through the bindings.
 
-    let tweetId =$stateParams.tweetId
-    let tweetFunction = $stateParams.function
-    let tweetTweetsBool = $stateParams.tweetsBool
+    this.tweetId =$stateParams.tweetId
+    this.tweetFunction = $stateParams.function
+    this.tweetTweetsBool = $stateParams.tweetsBool
+    this.tweetList = [];
 
     // $scope.id = $stateParams.tweetId
     // $scope.function = $stateParams.function
     // $scope.tweetsBool = $stateParams.tweetsBool
-    // console.log($stateParams.tweetsBool);
+    if(this.tweetTweetsBool)
+    {
+      tweetService.getAllTweets()
+        .then(function (data) {
+          this.tweetList = data
+          })
+    }else {
 
-    switch(tweetFunction) {
-     case "like":
-         console.log("Like"+ " "+ tweetId)
-         break
-     case "reply":
-        console.log("reply"+ " "+ tweetId)
-        break
-     case "repost":
-        console.log("repost"+ " "+ tweetId)
-        break
+    switch(this.tweetFunction) {
      case "tags":
-        console.log("tags"+ " "+ tweetId)
+        console.log("tags"+ " "+ this.tweetId)
+        tweetService.getTags(this.tweetId)
+          .then(function (data) {
+            this.tweetList = data
+            })
         break
-     case "getLikes":
-        console.log("getLikes"+ " "+ tweetId)
+     case "likes":
+        console.log("getLikes"+ " "+ this.tweetId)
+        tweetService.getLikes(this.tweetId)
+          .then(function (data) {
+            this.tweetList = data
+            })
         break
       case "context":
-        console.log("context"+ " "+ tweetId)
+        console.log("context"+ " "+ this.tweetId)
+        tweetService.getContext(this.tweetId)
+          .then(function (data) {
+            this.tweetList = data
+            })
         break
       case "replies":
-        console.log("replies"+ " "+ tweetId)
+        console.log("replies"+ " "+ this.tweetId)
+        tweetService.getReplies(this.tweetId)
+          .then(function (data) {
+            this.tweetList = data
+            })
         break
-      case "getRepost":
-        console.log("getRepost"+ " "+ tweetId)
+      case "repost":
+        console.log("getRepost"+ " "+ this.tweetId)
+        tweetService.getReposts(this.tweetId)
+          .then(function (data) {
+            this.tweetList = data
+            })
         break
       case "mentions":
-        console.log("mentions"+ " "+ tweetId)
+        console.log("mentions"+ " "+ this.tweetId)
+        tweetService.getMentions(this.tweetId)
+          .then(function (data) {
+            this.tweetList = data
+            })
         break
       default:
-        console.log("NOT A FUNCTION"+ " "+ tweetId)
+      console.log("id or not function"+ " "+ this.tweetId)
+      tweetService.getTweet(this.tweetId)
+        .then(function (data) {
+          this.tweetList = data
+          })
       }
 
       this.postTweet = (content, thisScope) => {
@@ -66,6 +92,7 @@ export default angular.module('twitter.app')
         return (Database.loggedIn.username !== '')
       }
   },
+
   controllerAs: 'ctrl',
   bindings: {}
 })

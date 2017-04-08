@@ -1,7 +1,18 @@
 <link rel="stylesheet" href="src/features/view/profile/template.css">
 
-<md-content class="view">
-    <div layout="column" layout-xs="column">
-    <h3>users</h3>
-    </div>
-</md-content>
+<md-toolbar class='md-primary' layout='column' layout-align='center center'>
+  <div class='md-toolbar-tools' layout='row' layout-align='right bottom'>
+    <h5>Yet Another Twitter</h5>
+    <i class="material-icons searchbox-bigbutton" ng-click="ctrl.setMenuState('people')">contacts</i>
+    <i class="material-icons searchbox-bigbutton" ng-click="ctrl.setMenuState('tags')">storage</i>
+    <i class="material-icons searchbox-bigbutton" ng-click="ctrl.setMenuState('tags')">flag</i>
+    <i class="material-icons searchbox-bigbutton" ng-click="ctrl.setMenuState('tags')">report</i>
+
+    <!--<i class="material-icons bigger-icon" ng-click="ctrl.setMenuState('settings')">application_settings</i>-->
+  </div>
+</md-toolbar>
+<div layout='row' layout-sm='column' layout-xs='column'>
+  <div style='width: 50%; margin-left:auto; min-width: 300px; flex:1'><profile></profile></div>
+  <div flex style='min-width: 10px'></div>
+  <div style='width: 50%; margin-left:auto; min-width: 300px; flex:1'><context></context></div>
+</div>
