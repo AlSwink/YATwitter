@@ -10,7 +10,7 @@ export default angular.module('twitter.app')
     self001 = this
 
 
-    const fakedata = false
+    const fakedata = true
 
     this.refresh = () => {
       if (fakedata) {
